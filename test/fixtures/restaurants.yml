@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  res_link: MyString
+  borough: MyString
+  location: MyString
+  about: MyString
+  img_url: MyString
+  hours: MyString
+
+two:
+  name: MyString
+  res_link: MyString
+  borough: MyString
+  location: MyString
+  about: MyString
+  img_url: MyString
+  hours: MyString
