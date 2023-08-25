@@ -1,6 +1,6 @@
 const Restaurant = () => {
  return (
-  <div> one Restaurant</div>
+  <div> One Restaurant </div>
 )} 
 
 export default Restaurant
