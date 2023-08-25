@@ -1,6 +1,5 @@
 class MenuitemSerializer < ActiveModel::Serializer
   attributes :id, :name, :img_url, :price, :details, :ave_ratings
-  belongs_to :restaurant
   has_many :reviews
 end
 # This file is auto-generated from the current state of the database. Instead

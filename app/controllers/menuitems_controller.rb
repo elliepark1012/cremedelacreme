@@ -5,7 +5,7 @@ class MenuitemsController < ApplicationController
     end 
 
     def show
-        menuitem = Menuitem.find_by(id: params[id])
+        menuitem = Menuitem.find_by(id: params[:id])
         render json: menuitem
     end 
 end
