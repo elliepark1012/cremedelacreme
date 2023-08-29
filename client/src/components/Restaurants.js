@@ -1,36 +1,59 @@
-import AppContext from "../context/AppContext"
-import { useContext } from "react"
-import RestaurantList from "./RestaurantList";
+import AppContext from "../context/AppContext";
+import { useContext } from "react";
+import Restaurant from "./Restaurant";
+import styled from 'styled-components';
+
+
+const Home = styled.div`
+text-align:center;
+margin-left: auto;
+margin-right: auto;
+max-width: 1200px;
+`
+
+const Grid = styled.div`
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+grid-gap: 20px;
+width: 100%;
+padding: 20px;
+
+> div {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+}
+`
 
 const Restaurants = () => {
 
+
     const {restaurants} = useContext(AppContext) 
 
+    const grid = restaurants.map( (restaurant, index) => {
+    
+  
+      return (
+        <Restaurant 
+          key={index}
+          restaurant={restaurant}
+        />
+      )
+    })
+
     return (
-      <div>
-        {restaurants.map((restaurant) => (
-          <RestaurantList key={restaurant.id} restaurant={restaurant} />
-        ))}
-      </div>
+      <Home>
+      <Grid>{grid}</Grid>
+      </Home>
     );
   };
 
    export default Restaurants
    
 
-  //  const {title, date, location, about, img_url, id, contact_name, contact_email } = opportunity
 
-  //  return (
-  //      <div className='card'>
-  //      <Link className="cardlink" to={`/opportunities/${id}`}>
- 
-  //          <img className='cardimage' src={img_url}/>
-  //          <h2>{title}</h2>
-  //          <p>Date: {date}</p>
-  //          <p>Location: {location}</p>
-  //          <p>{about}</p> 
-  //          <p>{contact_name}</p>
-  //          <p>{contact_email}</p>             
-  //      </Link>
-  //      </div>
-  //  )
+
+
+
+
+
