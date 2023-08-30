@@ -1,13 +1,13 @@
 import './App.css';
 import {useState, useEffect} from 'react';
 import  {Route, Routes} from 'react-router-dom'
-import RestaurantDetail from './components/Restaurant';
+import RestaurantDetail from './components/RestaurantDetail';
 import Restaurants from './components/Restaurants';
 import AppContext from './context/AppContext';
 // User Restaurant, Menu Usercontext
 
 function App() {
-  
+
   const [restaurants, setRestaurants] = useState([])   
   
   useEffect(() => {
@@ -32,7 +32,7 @@ function App() {
     <div className="App">
         <Routes>
           <Route exact path='/restaurants' element={<Restaurants />}  /> 
-          <Route path='/restaurants/:id' element={<RestaurantDetail />}  /> 
+          <Route exact path='/restaurants/:id' element={<RestaurantDetail  />}  />  
         </Routes>
     </div>
   </AppContext.Provider>  

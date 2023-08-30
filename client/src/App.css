@@ -1,0 +1,112 @@
+body {
+    background-color: #f4d8ae;
+    color: #FFFFFF;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+.App {
+    text-align: center;
+    margin: 0 auto; /* Center the element horizontally */
+    max-width: 100%; /* Allow the container to be as wide as the viewport */
+    overflow-x: hidden; 
+   
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+    width: 90%;
+    padding: 20px 20px 20px 20px;
+}
+
+.card {
+    background-color: #ea8a81;
+    border-radius: 12px;
+    display: inline-block;
+    margin: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+    width: 300px;
+}
+
+
+.card:hover {
+    transform: translateY(-10px);
+  }
+  
+
+.log-div {
+  height: 250px;
+}
+
+.logo {
+    height: 250px;
+    width: 300px;
+    border-radius: 0%;
+}
+
+.res-name {
+  height: 50px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: 'Apercu', sans-serif;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.home h1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 30vh; /* Make the div take up the full viewport height */
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-radius: 0%;
+    border-width: 80px;
+    border-style: solid;
+    border-color: #f4d8ae;
+    font-family: 'Edensor', sans-serif;
+    font-size: 100px;
+    background-color: #b6c48e;
+  }
+
+  .intro span {
+        font-size: 35px;
+        font-weight: bold;
+        font-style: italic;
+        font-family: 'Apercu', sans-serif;
+        color: #4e8998;
+  }
+
+  .res-detail, .menus {
+    padding: 40px;
+  }
+  
+  .res-detail h1, h2, h3, h4, .menus {
+    color: black;
+    font-family: 'Circular Std', sans-serif;
+  }
+
+  .info-container {
+    display: flex; /* Use flexbox layout */
+    align-items: center; /* Align items vertically within container */
+    background-color: #fb7ea8;
+  }
+  
+  .info-text {
+    flex: 1; /* Allow the text to take remaining space */
+    padding: 20px 20px;
+  }
+  
+  .logo-detail {
+    width: 350px;
+    height: 350px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
