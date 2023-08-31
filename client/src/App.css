@@ -110,3 +110,24 @@ body {
     margin-left: 20px;
     margin-right: 20px;
   }
+
+  #review_img {
+    height: 150px;
+    width: 100%;
+    border-radius: 0%;
+}
+
+#review-card {
+  background-color: #4e8998;
+  border-radius: 0px;
+  width: 100%; 
+}
+
+#review-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  width: 90%;
+  padding: 20px;
+  align-items: center;
+} 
+

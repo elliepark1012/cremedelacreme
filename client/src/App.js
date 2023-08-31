@@ -4,12 +4,12 @@ import  {Route, Routes} from 'react-router-dom'
 import RestaurantDetail from './components/RestaurantDetail';
 import Restaurants from './components/Restaurants';
 import AppContext from './context/AppContext';
+import MenuDetail from './components/MenuDetail';
 // User Restaurant, Menu Usercontext
 
 function App() {
+  const [restaurants, setRestaurants] = useState([]) 
 
-  const [restaurants, setRestaurants] = useState([])   
-  
   useEffect(() => {
     fetch('/restaurants')
     .then(res => {
@@ -33,6 +33,7 @@ function App() {
         <Routes>
           <Route exact path='/restaurants' element={<Restaurants />}  /> 
           <Route exact path='/restaurants/:id' element={<RestaurantDetail  />}  />  
+          <Route exact path='/menus/:id' element={<MenuDetail  />}  />
         </Routes>
     </div>
   </AppContext.Provider>  

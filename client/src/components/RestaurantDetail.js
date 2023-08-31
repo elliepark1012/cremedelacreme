@@ -1,6 +1,8 @@
 import  { useParams } from 'react-router-dom'
 import AppContext from "../context/AppContext";
 import { useContext } from "react";
+import { Link } from 'react-router-dom'
+
 
 const RestaurantDetail = () => {
     const { id } = useParams();
@@ -18,11 +20,14 @@ const RestaurantDetail = () => {
     console.log(menuitems)
 
     const menulist = menuitems.map((menu) => {
-        return <div>
-                <img src={menu.img_url} alt={menu.name} />
-                <p1> {menu.ave_ratings}</p1> 
-                <p1> {menu.name}</p1> 
+        return (     
+        <div className='card' key={menu.id}>
+            <Link to={`/menus/${menu.id}`} style={{ textDecoration: 'none', color: 'black' }}>
+                <img className='logo' src={menu.img_url} alt={menu.name} />
+                <p className='res-name'> {menu.name} <br></br>{menu.ave_ratings}</p> 
+            </Link> 
         </div>
+        )     
     })
     const lines = hours.split('\n');
     
@@ -47,13 +52,11 @@ const RestaurantDetail = () => {
                     </a>
             </div>
         </div>
-        <div className='menus'>
+        <div className="grid">
             {menulist}
         </div>
     </div>
-    );
-
-    
+    );    
 };
 
 export default RestaurantDetail
