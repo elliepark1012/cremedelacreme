@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_21_222044) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_01_145214) do
   create_table "menuitems", force: :cascade do |t|
     t.string "name"
     t.string "img_url"
@@ -51,10 +51,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_21_222044) do
     t.string "email"
     t.string "bio"
     t.string "profile_image"
-    t.string "password"
-    t.string "password_confirmation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
   end
 
   add_foreign_key "menuitems", "restaurants"
