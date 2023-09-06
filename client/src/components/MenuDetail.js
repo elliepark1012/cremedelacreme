@@ -1,10 +1,13 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import AppContext from "../context/AppContext";
+import { useContext } from "react";
+import ReviewForm from './ReviewForm';
 
 const MenuDetail = () => {
     const { id } = useParams();
     const [menuitem, setMenuitem] = useState([])
-
+    const {currentUser, setCurrentUser} = useContext(AppContext)
 
     useEffect(() => {
         // Fetch menu item data only when the component mounts
@@ -35,10 +38,18 @@ const MenuDetail = () => {
     )
   })
 
-  console.log(reviews)
+  const addReview = (review) => {
+    const newMenuitems = [...currentUser.menuitems, menuitem]
+    const newReviews = [...currentUser.reviews, review]
+    const newUser = {...currentUser, reviews: newReviews, menuitems: newMenuitems}
+
+    setCurrentUser(newUser)
+  }
+
 
     return (
         <div className='one-res'>
+
         <div className='res-detail'>
              <div className='info-container'>
                  <div className='info-text'>
@@ -50,6 +61,7 @@ const MenuDetail = () => {
                     
              </div>
          </div>
+         <ReviewForm menuitem={menuitem} addReview={addReview}/> 
          <div className="grid" id="review-grid">
              {reviewlist}
          </div>
