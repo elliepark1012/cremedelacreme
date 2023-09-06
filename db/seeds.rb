@@ -138,7 +138,7 @@ user1 = User.create(
     {username:"elliepark", 
     email:"elliepark@ellie.com", 
     bio:"Food Magazin BonBon Editor", 
-    profile_image:"hello", 
+    profile_image:"here is yours", 
     password:"hi", 
     password_confirmation:"hi"
 })

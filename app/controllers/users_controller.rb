@@ -1,16 +1,22 @@
 class UsersController < ApplicationController
-    def show
-        print "THIS IS THE CURRENT USER: #{current_user}"
-        render json: current_user, status: :ok
-      end
+  
+  def show
+    if current_user
+      render json: current_user, status: :ok
+    else
+      render json: { error: "User not found" }, status: :not_found
+    end
+  end
     
-      def create
+    def create
         user = User.create!(user_params)
-        session[:user_id] = user.id
+        session[:username] = user.username
         render json: user, status: :created
-      end
+     end
     
+    private
+
       def user_params
-        params.permit(:username, :email, :bio, :profile_image, :password, :password_confirmation)
+        params.permit(:username, :email, :password, :password_confirmation)
       end
 end

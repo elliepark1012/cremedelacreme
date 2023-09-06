@@ -2,13 +2,15 @@ import React, {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 import mainVideo from '../assets/main.mp4'
 
+
 function Login({updateUser}) {
+
+    const navigate = useNavigate();
+
     const [username, setUsername] = useState ('');
     const [password, setPassword] = useState('');
-    const [errors, setErrors] = useState ([])
     const [login, setLogin] = useState('')
-
-    const navigate = useNavigate()
+    const [errors, setErrors] = useState([]);
 
     function onSubmit(e){
         e.preventDefault()
@@ -16,27 +18,26 @@ function Login({updateUser}) {
             username,
             password
         }
-        // Logs in user
+
         fetch(`/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(user)
           })
-            .then(res => {
-              if (res.ok) {
-                return res.json().then(user => {
-                  updateUser(user);
-                  navigate('/restaurants');
-                });
-              } else {
-                return res.json().then(error => {
-                  console.log(error);
-                });
-              }
-            })
-            .catch(error => {
-              console.error('Fetch error:', error);
-            });
+          .then(res => {
+            if (res.ok) {
+              return res.json().then(user => {
+                console.log(user);
+                updateUser(user);
+                navigate('/mypage');
+              });
+            } else {
+              return res.json().then(error => {
+                console.log(error);
+                setErrors([error.errors]); // Set the errors state with the error message
+              });
+            }
+          })
         }
  
     return (
@@ -55,7 +56,9 @@ function Login({updateUser}) {
        
         <button type='submit' onClick={() => setLogin(login)}>Welcome BACK</button> 
       </form>
-      <div className='errorbox'>{errors?errors.map(e=> <div className='error'>{e}</div>):null}</div>
+      <div >
+  {errors.length > 0 ? errors.map(e => <div className='error'>{e}</div>) : null}
+</div>
         </div>
     )
 }

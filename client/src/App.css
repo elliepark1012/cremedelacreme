@@ -243,7 +243,7 @@ video {
 
 .backVideo {
   position: fixed;
-  top: 0;
+  top: -60%;
   left: 0;
   width: 200%;
   z-index: -1; 
