@@ -35,19 +35,21 @@ module Cremedelacreme
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
-    config.api_only = true
 
-    
+        # Adding back cookies and session middleware
+        config.api_only = true
         # Adding back cookies and session middleware
         config.middleware.use ActionDispatch::Cookies
         config.middleware.use ActionDispatch::Session::CookieStore
-
+    
         config.middleware.insert_before 0, Rack::Cors do
           allow do
-            origins 'http://localhost:3001' # Replace with the origin of your frontend application
-            resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options, :head]
+            origins 'http://localhost:3001'
+            resource '/me', headers: :any, methods: [:get], expose: ['Access-Control-Allow-Origin']
           end
         end
-    
+
+        config.action_dispatch.cookies_same_site_protection = :strict
+        # Use SameSite=Strict for all cookies to help protect against CSRF    
   end
 end

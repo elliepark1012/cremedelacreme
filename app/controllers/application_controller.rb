@@ -2,8 +2,8 @@ class ApplicationController < ActionController::API
     include ActionController::Cookies
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
-    # before_action :authorized
-    # skip_before_action :authorized, only: [:current_user, :show]
+    before_action :authorized
+    skip_before_action :authorized, only: [:current_user]
   
     def authorize_admin
       print "CURRENT USER IS: #{current_user}"

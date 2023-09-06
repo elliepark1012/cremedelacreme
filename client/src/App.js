@@ -22,21 +22,23 @@
       setCurrentUser(null);
     };
     
-useEffect(() => {
-  fetch('/me')
-    .then((r) => {
-      if (r.ok) {
-        return r.json();
-      } else {
-        throw new Error('Network response was not OK');
-      }
-    })
-    .then((user) => updateUser(user))
-    .catch((error) => {
-      console.error('Error fetching user:', error);
-      // Handle the error, e.g., set a state indicating the error
-    });
-}, []);
+    useEffect(() => {
+      fetch('/me', {
+        credentials: 'include'
+      })
+        .then((r) => {
+          if (r.ok) {
+            return r.json();
+          } else {
+            throw new Error('Network response was not OK');
+          }
+        })
+        .then((user) => updateUser(user))
+        .catch((error) => {
+          console.error('Error fetching user:', error);
+          // Handle the error, e.g., set a state indicating the error
+        });
+    }, []);
 
     useEffect(() => {
       fetch('/restaurants')

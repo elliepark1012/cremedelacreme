@@ -42,7 +42,7 @@ function Auth() {
                     password_confirmation: ''
                 })
                 res.json().then(setCurrentUser)
-                navigate('/opportunities')
+                navigate('/mypage')
                 }
             else {
                 res.json().then((errorData) => setErrors(Object.entries(errorData.errors).map(e => `${e[0]} ${e[1]}`)))

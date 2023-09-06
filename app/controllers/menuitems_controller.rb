@@ -1,4 +1,6 @@
 class MenuitemsController < ApplicationController
+    skip_before_action :authorized
+
     def index
         menuitems = Menuitem.all
         render json: menuitems 

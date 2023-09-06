@@ -18,9 +18,9 @@ return (
     <nav className="navbar">
         <ul>
             <li><Link className='navLink' to='/'>HOME</Link></li>
-            <li><Link className='navLink' to='/restaurants'>REVIEWS</Link></li>
             {currentUser? 
             <>
+            <li><Link className='navLink' to='/restaurants'>REVIEWS</Link></li>
             <li><Link className='navLink' to='/mypage'>MY PAGE</Link> </li>
             <li><Link className='navLink' to='/login' onClick={handleLogout}>LOG OUT</Link> </li>
             </>:           

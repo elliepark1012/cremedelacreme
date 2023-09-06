@@ -10,7 +10,7 @@ const MyPage = () => {
     const { username, bio, email, profile_image } = currentUser;
 
     content = <div>
-                 <img src={profile_image} alt={bio}/>
+                 {/* <img src={profile_image} alt={bio}/> */}
                 <h1>USERNAME: {username}</h1>
                 <h1>ABOUT: {bio}</h1>
                 <h1>EMAIL: {email}</h1>
