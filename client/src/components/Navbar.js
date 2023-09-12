@@ -5,14 +5,18 @@ import { useContext } from "react";
 
 const Navbar = () => {
     const navigate = useNavigate();
-    const {currentUser, logout} = useContext(AppContext) 
+    const {currentUser, updateUser} = useContext(AppContext) 
 
-    const handleLogout = () => {
-        // Call the logout function to clear the user's session.
-        logout();
-        // Use navigate to redirect the user to the login page.
-        navigate('/login');
-      };    
+    function handleLogoutClick() {
+        fetch("/logout", { method: "DELETE" })
+        .then((r) => {
+          if (r.ok) {
+            updateUser(false); 
+            alert("See you again (ʘ‿ʘ)ノ✿")
+            navigate(`/`)
+          }
+        })
+      }
 
 return (
     <nav className="navbar">
@@ -22,7 +26,7 @@ return (
             <>
             <li><Link className='navLink' to='/restaurants'>REVIEWS</Link></li>
             <li><Link className='navLink' to='/mypage'>MY PAGE</Link> </li>
-            <li><Link className='navLink' to='/login' onClick={handleLogout}>LOG OUT</Link> </li>
+            <li><Link className='navLink' to='/login' onClick={handleLogoutClick}>LOG OUT</Link> </li>
             </>:           
              <>
              <li><Link className='navLink' to='/signup'>SIGN UP</Link></li>

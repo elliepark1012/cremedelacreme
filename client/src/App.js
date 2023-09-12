@@ -10,22 +10,17 @@
   import Home from './components/Home';
   import Navbar from './components/Navbar';
   import MyPage from './components/MyPage';
-  // User Restaurant, Menu Usercontext
 
   function App() {
     const [restaurants, setRestaurants] = useState([]) 
-    const [currentUser, setCurrentUser] = useState([])
+    const [currentUser, setCurrentUser] = useState(false)
 
-    const updateUser = (user) => setCurrentUser(user)
+   
 
-    const logout = () => {
-      setCurrentUser(null);
-    };
-    
+    console.log(currentUser)
+
     useEffect(() => {
-      fetch('/me', {
-        credentials: 'include'
-      })
+      fetch('/me')
         .then((r) => {
           if (r.ok) {
             return r.json();
@@ -36,9 +31,10 @@
         .then((user) => updateUser(user))
         .catch((error) => {
           console.error('Error fetching user:', error);
-          // Handle the error, e.g., set a state indicating the error
         });
     }, []);
+
+    const updateUser = (user) => setCurrentUser(user)
 
     useEffect(() => {
       fetch('/restaurants')
@@ -58,13 +54,13 @@
     }, [])
 
     return (    
-      <AppContext.Provider value={{ restaurants, setRestaurants, setCurrentUser, currentUser, logout }}>
+      <AppContext.Provider value={{ restaurants, setRestaurants, setCurrentUser, currentUser, updateUser }}>
         <div className="App">
           <Navbar />
           <Routes>
             <Route exact path='/restaurants' element={<Restaurants />} /> */
             <Route exact path='/restaurants/:id' element={<RestaurantDetail />} />
-            <Route exact path='/menus/:id' element={<MenuDetail />} />
+            <Route path="/menus/:id" element={<MenuDetail />} />
             <Route exact path='/login' element={<Login updateUser={updateUser} />} />
             <Route exact path='/signup' element={<Auth />} />
             <Route exact path='/mypage' element={<MyPage />} />
@@ -75,5 +71,4 @@
   );
 }
 
-
-  export default App 
+export default App 

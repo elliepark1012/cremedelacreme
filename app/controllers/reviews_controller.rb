@@ -12,9 +12,19 @@ def show
 end 
 
 def create
-    review = current_user.reviews.create(review_params)
-    render json: review, status: :created
-end 
+    if current_user.nil?
+      render json: { error: "User not authenticated" }, status: :unauthorized
+      return
+    end
+  
+    review = current_user.reviews.build(review_params)
+  
+    if review.save
+      render json: review, status: :created
+    else
+      render json: { errors: review.errors.full_messages }, status: :unprocessable_entity
+    end
+  end   
 
 def update 
     review = current_user.reviews.find(params[:id])

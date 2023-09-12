@@ -3,72 +3,87 @@ import { useState, useEffect } from 'react';
 import AppContext from "../context/AppContext";
 import { useContext } from "react";
 import ReviewForm from './ReviewForm';
+import { useNavigate } from 'react-router-dom';
+// import ReviewEditForm from './ReviewEditForm';
+import MenuReview from './MenuReview';
 
 const MenuDetail = () => {
     const { id } = useParams();
     const [menuitem, setMenuitem] = useState([])
     const {currentUser, setCurrentUser} = useContext(AppContext)
 
+    const navigate = useNavigate();
+
     useEffect(() => {
-        // Fetch menu item data only when the component mounts
+      if (/^\d+$/.test(id)) {
         fetch(`/menuitems/${id}`)
-          .then(res => res.json())
-          .then(menuitemData => {
-            // Do something with the menu item data
-            setMenuitem(menuitemData);
+          .then((res) => {
+            if (res.ok) {
+              return res.json();
+            } else {
+              console.error(`Menu item with id ${id} not found.`);
+              return null; 
+            }
           })
-          .catch(error => {
+          .then((menuitemData) => {
+            if (menuitemData !== null) {
+              setMenuitem(menuitemData);
+            }
+          })
+          .catch((error) => {
             console.error('Error fetching menu item:', error);
           });
-      }, [id]); 
+      } else {
+        console.error(`Invalid menu item id: ${id}`);
+      }
+    }, [id]);
+
 
   const { name, img_url, price, details, ave_ratings } = menuitem;
-
   const reviews = menuitem.reviews
 
-  const reviewlist = reviews && reviews.map((re) => {
-    return (
-      <div className='card' id="review-card" key={re.id}>
-        <img className='logo' id="review_img" src={re.review_image} alt={re.comments} />
-        <p className='res-name'> {re.ratings}</p> 
-        <p className='res-name'> {re.comments}</p> 
-        <p className='res-name'> by {re.user_name}</p>
-        <p className='res-name'> ({re.user_bio})</p>  
-      </div>
-    )
-  })
-
   const addReview = (review) => {
-    const newMenuitems = [...currentUser.menuitems, menuitem]
-    const newReviews = [...currentUser.reviews, review]
-    const newUser = {...currentUser, reviews: newReviews, menuitems: newMenuitems}
+    const newReviews = [...currentUser.reviews, review];
+    const updatedMenuitem = { ...menuitem };
+    updatedMenuitem.reviews = [...menuitem.reviews, review];
+    const newUser = { ...currentUser, reviews: newReviews, menuitems: updatedMenuitem };
+    
+    setMenuitem(updatedMenuitem);
+    setCurrentUser(newUser);
 
-    setCurrentUser(newUser)
-  }
+    if (updatedMenuitem.id) {
+      const num = updatedMenuitem.id
+      navigate(`/menus/${num}`);
+    }
+  };
 
-
-    return (
-        <div className='one-res'>
-
-        <div className='res-detail'>
-             <div className='info-container'>
-                 <div className='info-text'>
-                     <h1>{name} ${price}</h1>
-                     <h2>{ave_ratings}</h2>
-                     <h2>{details}</h2>
-                 </div>
-                    <img className='logo-detail' src={img_url} alt={name} />
-                    
-             </div>
-         </div>
-         <ReviewForm menuitem={menuitem} addReview={addReview}/> 
-         <div className="grid" id="review-grid">
-             {reviewlist}
-         </div>
-     </div>
-    )
+  return (
+    <div className='one-res'>
+      <div className='res-detail'>
+        <div className='info-container'>
+          <div className='info-text'>
+            <h1>{name} ${price}</h1>
+            <h2>{ave_ratings}</h2>
+            <h2>{details}</h2>
+          </div>
+          <img className='logo-detail' src={img_url} alt={name} />
+        </div>
+      </div>
+      <ReviewForm addReview={addReview} />
+      {reviews &&
+        reviews.map((review) => (
+          <MenuReview
+            review={review}
+            key={review.id} // Make sure to add a unique key prop for each mapped item
+          />
+        ))}
+    </div>
+  );
 }
 
 
 export default MenuDetail
+
+
+
 
