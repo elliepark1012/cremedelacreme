@@ -13,11 +13,7 @@
 
   function App() {
     const [restaurants, setRestaurants] = useState([]) 
-    const [currentUser, setCurrentUser] = useState(false)
-
-   
-
-    console.log(currentUser)
+    const [currentUser, setCurrentUser] = useState(false) 
 
     useEffect(() => {
       fetch('/me')

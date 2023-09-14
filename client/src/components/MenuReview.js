@@ -2,6 +2,7 @@ import React from 'react';
 
 const MenuReview = ({ review }) => {
   return (
+    
     <div className='card' id="review-card" key={review.id}>
       <img className='logo' id="review_img" src={review.review_image} alt={review.comments} />
       <p className='res-name'> {review.ratings}</p> 

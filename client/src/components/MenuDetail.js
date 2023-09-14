@@ -69,7 +69,8 @@ const MenuDetail = () => {
           <img className='logo-detail' src={img_url} alt={name} />
         </div>
       </div>
-      <ReviewForm addReview={addReview} />
+      <ReviewForm addReview={addReview} menuitem={menuitem}/>
+      <div className="grid" id="review-grid">
       {reviews &&
         reviews.map((review) => (
           <MenuReview
@@ -77,6 +78,7 @@ const MenuDetail = () => {
             key={review.id} // Make sure to add a unique key prop for each mapped item
           />
         ))}
+      </div>
     </div>
   );
 }
