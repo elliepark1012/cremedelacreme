@@ -198,14 +198,6 @@ User.create(
     }
 )
 
-reviews1 = Review.create({
-    user_id:1,
-    menuitem_id:1,
-    review_image:"temp",
-    ratings:5,
-    comments:"temp"
-})
-
 user_ids = (1..6).to_a
 mar_menu_item_ids = (1..3).to_a
 han_menu_item_ids = (4..6).to_a
@@ -216,8 +208,8 @@ ratings = (3..5).to_a
 
 mar_url = [
     "https://jaymoylovesfood.files.wordpress.com/2019/06/img_3676.jpg",
-    "https://jaymoylovesfood.files.wordpress.com/2019/06/img_3665.jpg?w=2360&h=1770",
-    "https://jaymoylovesfood.files.wordpress.com/2019/06/img_3670.jpg?w=2360&h=1770"
+    "https://media-cdn.tripadvisor.com/media/photo-s/0f/00/58/e8/martha-s-country-bakery.jpg",
+    "https://media-cdn.tripadvisor.com/media/photo-s/15/f4/b5/7f/photo0jpg.jpg"
 ]
 
 han_url = [
