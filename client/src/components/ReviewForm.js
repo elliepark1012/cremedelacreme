@@ -14,25 +14,45 @@ function ReviewForm({ addReview, menuitem }) {
 
   useEffect(() => {
     if (menuitem.id !== undefined) {
-      // Use a callback function to set the state based on the previous state
       setFormData((prevFormData) => ({
         ...prevFormData,
         menuitem_id: menuitem.id,
       }));
     }
-  }, [menuitem.id]); // Only include menuitem.id in the dependency array
+  }, [menuitem.id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
-    const sanitizedValue = name === 'ratings' ? parseInt(value, 10) : value;
-
-    setFormData({
-      ...formData,
-      [name]: sanitizedValue,
-    });
-  };
-
+  
+    if (name === 'ratings') {
+      const sanitizedValue = parseInt(value, 10);
+      if (!isNaN(sanitizedValue) && sanitizedValue >= 0 && sanitizedValue <= 5) {
+        setFormData({
+          ...formData,
+          [name]: sanitizedValue,
+        });
+      } else {
+        alert('Please put the number in between 0 to 5')
+        // setFormData({
+        //   ...formData,
+        //   [name]: 0, // You can set it to a default value or display an error message here.
+        // });
+      }
+    } else if (name === 'review_image') {
+      const sanitizedValue = value.trim();
+      const defaultImageURL = 'https://www.clearbrook.org/wp-content/uploads/2019/09/Coming-Soon.jpg';
+      setFormData({
+        ...formData,
+        [name]: sanitizedValue === '' ? defaultImageURL : sanitizedValue,
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
+  };  
+  
   function onSubmit(e) {
     e.preventDefault();
     console.log(formData);

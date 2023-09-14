@@ -207,7 +207,6 @@ ooi_menu_item_ids = (10..12).to_a
 ratings = (3..5).to_a
 
 mar_url = [
-    "https://jaymoylovesfood.files.wordpress.com/2019/06/img_3676.jpg",
     "https://media-cdn.tripadvisor.com/media/photo-s/0f/00/58/e8/martha-s-country-bakery.jpg",
     "https://media-cdn.tripadvisor.com/media/photo-s/15/f4/b5/7f/photo0jpg.jpg"
 ]
