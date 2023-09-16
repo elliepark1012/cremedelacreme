@@ -10,7 +10,7 @@ body {
 .App {
     text-align: center;
     margin: 0 auto; /* Center the element horizontally */
-    max-width: 100%; /* Allow the container to be as wide as the viewport */
+    max-width: 100%; 
     overflow-x: hidden; 
    
 }
@@ -263,3 +263,74 @@ video {
   text-align: center;
   font-size: 20px;
 }
+
+button {
+  background-color: #007bff; 
+  color: #fff;
+  border: none; 
+  padding: 10px 20px; 
+  margin-right: 10px; 
+  margin-bottom: 20px;
+  cursor: pointer; 
+  border-radius: 5px; 
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #0056b3; 
+  }
+}
+
+button.delete {
+  background-color: #dc3545; 
+
+  &:hover {
+    background-color: #c82333; 
+  }
+}
+
+.user-profile-card {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  height: 50vh; 
+}
+
+.user-profile {
+  width: 500px;
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.user-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  text-align: center; 
+}
+
+.user-avatar img {
+  max-width: 100%; 
+  max-height: 100%;
+  object-fit: cover; 
+  border-radius: 50%; 
+}
+
+h2 {
+  color: #000; 
+  margin-bottom: 10px; 
+}
+
+p {
+  margin: 0; 
+  color: #000; 
+}
+
+strong {
+  font-weight: bold;
+}
+

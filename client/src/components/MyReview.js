@@ -6,12 +6,8 @@ const MyReview = ({ review, onEdit, onDelete }) => {
       <img className='logo' id="review_img" src={review.review_image} alt={review.review_image} />
       <p className='res-name'>{review.ratings}</p> 
       <p className='res-name'>{review.comments}</p> 
-      <p className='res-name'>by {review.user_name}</p>
-      <p className='res-name'>({review.user_bio})</p>
-      {/* Edit button */}
       <button onClick={() => onEdit(review)}>Edit</button>
-      {/* Delete button */}
-      <button onClick={() => onDelete(review)}>Delete</button>
+      <button onClick={() => onDelete(review)} className='delete'>Delete</button>
     </div>
   );
 };

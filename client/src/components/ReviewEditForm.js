@@ -10,11 +10,31 @@ const ReviewEditForm = ({ review, onSave, onCancel }) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setEditedReview({
-      ...editedReview,
-      [name]: value,
-    });
-  };
+  
+    if (name === 'ratings') {
+      const sanitizedValue = parseInt(value, 10);
+      if (!isNaN(sanitizedValue) && sanitizedValue >= 0 && sanitizedValue <= 5) {
+        setEditedReview({
+          ...editedReview,
+          [name]: sanitizedValue,
+        });
+      } else {
+        alert('Please put the number in between 0 to 5')
+      }
+    } else if (name === 'review_image') {
+      const sanitizedValue = value.trim();
+      const defaultImageURL = 'https://www.clearbrook.org/wp-content/uploads/2019/09/Coming-Soon.jpg';
+      setEditedReview({
+        ...editedReview,
+        [name]: sanitizedValue === '' ? defaultImageURL : sanitizedValue,
+      });
+    } else {
+      setEditedReview({
+        ...editedReview,
+        [name]: value,
+      });
+    }
+  };  
 
   const handleSubmit = () => {
     onSave(editedReview);

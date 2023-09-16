@@ -2,6 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import AppContext from "../context/AppContext";
 import ReviewEditForm from './ReviewEditForm';
 import MyReview from "./MyReview";
+import UserProfile from "./UserProfile"; // Separate component for user profile rendering
 
 const MyPage = () => {
   const { currentUser } = useContext(AppContext);
@@ -12,14 +13,9 @@ const MyPage = () => {
     setReviews(currentUser.reviews);
   }, [currentUser]);
 
-  const { username, bio, email, profile_image } = currentUser;
-
-  let content = <ul>{username} {bio} {email} {profile_image}</ul>
-
   const handleEditReview = (review) => {
     setEditingReview(review);
   };
-
   const handleSaveEditedReview = (editedReview) => {
     fetch(`/reviews/${editingReview.id}`, {
       method: 'PATCH',
@@ -49,20 +45,14 @@ const MyPage = () => {
   };
 
   const handleDeleteReview = (review) => {
-    // Perform deletion logic here (e.g., send a request to the server)
-    // After successful deletion, update the UI to remove the review
-    // from the reviews list
     fetch(`/reviews/${review.id}`, {
       method: 'DELETE',
     })
       .then((response) => {
         if (response.ok) {
-          // Review deleted successfully, update the UI
-          // Remove the review from your reviews state
           const updatedReviews = reviews.filter((r) => r.id !== review.id);
           setReviews(updatedReviews);
         } else {
-          // Handle the case where deletion fails
           console.error('Failed to delete the review');
         }
       })
@@ -71,39 +61,33 @@ const MyPage = () => {
       });
   };
 
-  // Define the 'content' variable here if needed...
-
+  
   return (
     <>
-    {content}
-    <div className="grid" id="review-grid">
-      {reviews &&
-        reviews.map((review) => (
-          <div key={review.id}>
-            {editingReview && editingReview.id === review.id ? (
-              <ReviewEditForm
-                review={editingReview}
-                onSave={handleSaveEditedReview}
-                onCancel={handleCancelEdit}
-              />
-            ) : (
-              <MyReview
-                review={review}
-                onEdit={handleEditReview}
-                onDelete={handleDeleteReview}
-              />
-            )}
-          </div>
-        ))}
-
-    </div>
+      <UserProfile user={currentUser} /> {/* Render user profile information */}
+      <div className="grid" id="review-grid">
+        {/* Render reviews */}
+        {reviews &&
+          reviews.map((review) => (
+            <div key={review.id}>
+              {editingReview && editingReview.id === review.id ? (
+                <ReviewEditForm
+                  review={editingReview}
+                  onSave={handleSaveEditedReview}
+                  onCancel={handleCancelEdit}
+                />
+              ) : (
+                <MyReview
+                  review={review}
+                  onEdit={handleEditReview}
+                  onDelete={handleDeleteReview}
+                />
+              )}
+            </div>
+          ))}
+      </div>
     </>
   );
 };
 
 export default MyPage;
-
-
-
-
-
