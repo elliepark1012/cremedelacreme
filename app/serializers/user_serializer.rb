@@ -4,9 +4,10 @@ class UserSerializer < ActiveModel::Serializer
   has_many :menuitems
 
   def profile_image_url
-    if object.image.attached?
-      rails_blob_path(object.image, only_path: true)
+    if object.profile_image.attached?
+      rails_blob_path(object.profile_image, only_path: true)
     else
       'https://cdn3.iconfinder.com/data/icons/essential-rounded/64/Rounded-31-1024.png'
     end
   end
+end

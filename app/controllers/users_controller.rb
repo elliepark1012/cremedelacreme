@@ -21,8 +21,8 @@
     end
       
       private
-
-        def user_params
-          params.permit(:username, :bio, :profile_image, :email, :password, :password_confirmation)
-        end
+      
+      def user_params
+        params.permit(:username, :bio, :profile_image, :email, :password, :password_confirmation)
+      end
   end

@@ -15,7 +15,7 @@ function Auth() {
         password: '',
         password_confirmation: '',
         bio: '', // Add a field for bio
-        image: null, // Add a field for profile image
+        profile_image: null, // Add a field for profile image
     });
 
     const handleChange = (e) => {
@@ -35,7 +35,7 @@ function Auth() {
         formDataWithImage.append('password', formData.password);
         formDataWithImage.append('password_confirmation', formData.password_confirmation);
         formDataWithImage.append('bio', formData.bio); // Include bio in the form data
-        formDataWithImage.append('image', formData.image); // Include profile image in the form data
+        formDataWithImage.append('image', formData.profile_image); // Include profile image in the form data
 
         fetch('/users', {
             method: 'POST',
@@ -49,7 +49,7 @@ function Auth() {
                         password: '',
                         password_confirmation: '',
                         bio: '', // Clear bio field
-                        image: null, // Clear profile image field
+                        profile_image: null, // Clear profile image field
                     });
                     res.json().then(setCurrentUser);
                     navigate('/mypage');
@@ -104,8 +104,8 @@ function Auth() {
                 <label>Profile Image</label>
                 <input
                     type='file'
-                    name='image'
-                    accept='image/*' // Allow only image files
+                    name='profile_image'
+                    accept='image/*' 
                     onChange={handleChange}
                 />
                 <button type='submit'>Sign Up</button>
