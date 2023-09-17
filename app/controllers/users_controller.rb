@@ -1,5 +1,10 @@
   class UsersController < ApplicationController
     skip_before_action :authorized, only: [:create]
+
+    def index 
+      users = User.all.with_attached_image
+      render json: users
+    end
     
     def show
       if current_user
@@ -18,6 +23,6 @@
       private
 
         def user_params
-          params.permit(:username, :email, :password, :password_confirmation)
+          params.permit(:username, :bio, :profile_image, :email, :password, :password_confirmation)
         end
   end
