@@ -9,7 +9,7 @@ body {
 
 .App {
     text-align: center;
-    margin: 0 auto; /* Center the element horizontally */
+    margin: 0 auto; 
     max-width: 100%; 
     overflow-x: hidden; 
    
@@ -95,13 +95,13 @@ body {
   }
 
   .info-container {
-    display: flex; /* Use flexbox layout */
-    align-items: center; /* Align items vertically within container */
+    display: flex; 
+    align-items: center;
     background-color: #fb7ea8;
   }
   
   .info-text {
-    flex: 1; /* Allow the text to take remaining space */
+    flex: 1; 
     padding: 20px 20px;
   }
   
@@ -147,7 +147,6 @@ body {
   font-size: 20px;
 }
 
-/* Styling for the error messages */
 .errorbox {
   margin-bottom: 10px;
   color: #ff0000;
@@ -158,7 +157,6 @@ body {
   margin-bottom: 5px;
 }
 
-/* Styling for labels */
 label {
   display: block;
   margin-bottom: 5px;
@@ -166,7 +164,6 @@ label {
   text-decoration: none;
 }
 
-/* Styling for input fields */
 input[type="text"],
 input[type="password"] {
   width: 80%;
@@ -176,7 +173,6 @@ input[type="password"] {
   border-radius: 3px;
 }
 
-/* Styling for the submit button */
 button[type="submit"] {
   width: 50%;
   background-color: #4e8998;
@@ -188,7 +184,6 @@ button[type="submit"] {
   cursor: pointer;
 }
 
-/* Styling for the login link */
 .loginlink {
   text-align: center;
   display: block;
@@ -201,7 +196,7 @@ button[type="submit"] {
 .loginlink:hover {
   text-decoration: underline;
 }
-/* Style the navigation bar */
+
 nav {
   background-color: #fb7ea8;
   position: relative;
