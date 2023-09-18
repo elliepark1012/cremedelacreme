@@ -329,3 +329,23 @@ strong {
   font-weight: bold;
 }
 
+.file-input-button {
+  background-color: #ea85ca;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-left: 30px;
+  margin-right: 30px;
+  transition: background-color 0.3s ease;
+}
+
+.file-input-button:hover {
+  background-color: #278c87; 
+}
+
+.file-input {
+  display: none;
+}

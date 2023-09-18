@@ -47,7 +47,7 @@
       .catch(error => {
           console.log('Error fetching restaurants:', error);
           });
-    }, [])
+    }, [currentUser])
 
     return (    
       <AppContext.Provider value={{ restaurants, setRestaurants, setCurrentUser, currentUser, updateUser }}>

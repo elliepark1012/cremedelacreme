@@ -135,20 +135,20 @@ Menuitem.create({
 })
 
 user1 = User.create(
-    {username:"elliepark", 
+    {
+    username:"elliepark", 
     email:"elliepark@ellie.com", 
     bio:"Food Magazin BonBon Editor", 
-    profile_image:"here is yours", 
     password:"hi", 
     password_confirmation:"hi"
-})
+    }
+)
 
 User.create(
     {
         username: "foodie_adventurer",
         email: "foodie@example.com",
         bio: "Exploring the world one plate at a time. Food lover, traveler, and storyteller.",
-        profile_image: "profile_image_url_here",
         password: "password123",
         password_confirmation: "password123"
     }
@@ -159,7 +159,6 @@ User.create(
         username: "taste_tales",
         email: "taste@example.com",
         bio: "Capturing the essence of flavors through words. Sharing my gastronomic journey with you.",
-        profile_image: "profile_image_url_here",
         password: "mysecretpass",
         password_confirmation: "mysecretpass"
     }
@@ -170,7 +169,6 @@ User.create(
         username: "culinary_nomad",
         email: "nomad@example.com",
         bio: "Roaming the culinary world, seeking hidden gems and savoring every bite. Join me on my global food quest!",
-        profile_image: "profile_image_url_here",
         password: "wanderlust123",
         password_confirmation: "wanderlust123"
     }
@@ -181,7 +179,6 @@ User.create(
         username: "flavor_diaries",
         email: "diaries@example.com",
         bio: "Documenting flavors, aromas, and stories behind every dish. Food is my language, and I'm here to share it with you.",
-        profile_image: "profile_image_url_here",
         password: "flavorful",
         password_confirmation: "flavorful"
     }
@@ -192,7 +189,6 @@ User.create(
         username: "gastronomy_guru",
         email: "guru@example.com",
         bio: "Guiding you through the intricate world of gastronomy. Exploring recipes, cultures, and everything delicious.",
-        profile_image: "profile_image_url_here",
         password: "savory123",
         password_confirmation: "savory123"
     }
