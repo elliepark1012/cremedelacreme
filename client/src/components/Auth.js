@@ -14,8 +14,8 @@ function Auth() {
         email: '',
         password: '',
         password_confirmation: '',
-        bio: '', // Add a field for bio
-        image: null, // Add a field for profile image
+        bio: '', 
+        image: null, 
     });
 
     const handleChange = (e) => {
@@ -34,8 +34,8 @@ function Auth() {
         formDataWithImage.append('email', formData.email);
         formDataWithImage.append('password', formData.password);
         formDataWithImage.append('password_confirmation', formData.password_confirmation);
-        formDataWithImage.append('bio', formData.bio); // Include bio in the form data
-        formDataWithImage.append('image', formData.image); // Include profile image in the form data
+        formDataWithImage.append('bio', formData.bio); 
+        formDataWithImage.append('image', formData.image); 
 
         fetch('/users', {
             method: 'POST',
@@ -48,8 +48,8 @@ function Auth() {
                         email: '',
                         password: '',
                         password_confirmation: '',
-                        bio: '', // Clear bio field
-                        profile_image: null, // Clear profile image field
+                        bio: '', 
+                        profile_image: null, 
                     });
                     res.json().then(setCurrentUser);
                     navigate('/mypage');
@@ -102,12 +102,16 @@ function Auth() {
                     onChange={handleChange}
                 />
                 <label>Profile Image</label>
-                <input
-                    type='file'
-                    name='image'
-                    accept='image/*' // Allow only image files
-                    onChange={handleChange}
-                />
+                <div className="file-input-container">
+                    <input
+                        type='file'
+                        name='image'
+                        accept='image/*' 
+                        onChange={handleChange}
+                        className="file-input"
+                    />
+                    <label htmlFor="image" className="file-label">Choose File</label>
+                </div>
                 <button type='submit'>Sign Up</button>
             </form>
             <br></br>

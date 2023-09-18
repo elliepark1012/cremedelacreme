@@ -138,7 +138,6 @@ user1 = User.create(
     {username:"elliepark", 
     email:"elliepark@ellie.com", 
     bio:"Food Magazin BonBon Editor", 
-    profile_image:"here is yours", 
     password:"hi", 
     password_confirmation:"hi"
 })
@@ -148,7 +147,6 @@ User.create(
         username: "foodie_adventurer",
         email: "foodie@example.com",
         bio: "Exploring the world one plate at a time. Food lover, traveler, and storyteller.",
-        profile_image: "profile_image_url_here",
         password: "password123",
         password_confirmation: "password123"
     }
@@ -159,7 +157,6 @@ User.create(
         username: "taste_tales",
         email: "taste@example.com",
         bio: "Capturing the essence of flavors through words. Sharing my gastronomic journey with you.",
-        profile_image: "profile_image_url_here",
         password: "mysecretpass",
         password_confirmation: "mysecretpass"
     }
@@ -170,7 +167,6 @@ User.create(
         username: "culinary_nomad",
         email: "nomad@example.com",
         bio: "Roaming the culinary world, seeking hidden gems and savoring every bite. Join me on my global food quest!",
-        profile_image: "profile_image_url_here",
         password: "wanderlust123",
         password_confirmation: "wanderlust123"
     }
@@ -181,7 +177,6 @@ User.create(
         username: "flavor_diaries",
         email: "diaries@example.com",
         bio: "Documenting flavors, aromas, and stories behind every dish. Food is my language, and I'm here to share it with you.",
-        profile_image: "profile_image_url_here",
         password: "flavorful",
         password_confirmation: "flavorful"
     }
@@ -192,7 +187,6 @@ User.create(
         username: "gastronomy_guru",
         email: "guru@example.com",
         bio: "Guiding you through the intricate world of gastronomy. Exploring recipes, cultures, and everything delicious.",
-        profile_image: "profile_image_url_here",
         password: "savory123",
         password_confirmation: "savory123"
     }
@@ -207,8 +201,8 @@ ooi_menu_item_ids = (10..12).to_a
 ratings = (3..5).to_a
 
 mar_url = [
-    "https://media-cdn.tripadvisor.com/media/photo-s/0f/00/58/e8/martha-s-country-bakery.jpg",
-    "https://media-cdn.tripadvisor.com/media/photo-s/15/f4/b5/7f/photo0jpg.jpg"
+ "https://www.abroadwithash.com/wp-content/uploads/2022/09/Laduree-Paris--scaled.jpg",
+ "https://i0.wp.com/newyorksimply.com/wp-content/uploads/2021/11/SuperMoonBakeryNYC-02550.jpg?w=1800&ssl=1"
 ]
 
 han_url = [
@@ -257,7 +251,7 @@ comments = [
   "Simple yet satisfying.",
   "Innovative and thoroughly enjoyable."
 ]
-5.times do
+3.times do
     review = Review.create(
         {
         user_id: user_ids.sample,
