@@ -4,15 +4,15 @@ import { useContext } from 'react';
 
 const UserProfile = () => {
   const { currentUser } = useContext(AppContext);
-  const { username, bio, email, profile_image_url } = currentUser;
-  
+  const { username, bio, email, profile_image } = currentUser;
+
   return (
     <div className="user-profile-card">
       <div className="user-profile">
         <h2>User Profile</h2>
         <div className="user-details">
           <div className="user-avatar">
-            <img src={profile_image_url} alt={`${username}'s Avatar`} />
+            <img src={profile_image} alt={`${username}'s Avatar`} />
           </div>
           <div className="user-info">
             <p>

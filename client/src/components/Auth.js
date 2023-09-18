@@ -14,8 +14,8 @@ function Auth() {
         email: '',
         password: '',
         password_confirmation: '',
-        bio: '', 
-        profile_image: null, 
+        bio: '', // Add a field for bio
+        image: null, // Add a field for profile image
     });
 
     const handleChange = (e) => {
@@ -34,8 +34,8 @@ function Auth() {
         formDataWithImage.append('email', formData.email);
         formDataWithImage.append('password', formData.password);
         formDataWithImage.append('password_confirmation', formData.password_confirmation);
-        formDataWithImage.append('bio', formData.bio); 
-        formDataWithImage.append('image', formData.profile_image); 
+        formDataWithImage.append('bio', formData.bio); // Include bio in the form data
+        formDataWithImage.append('image', formData.image); // Include profile image in the form data
 
         fetch('/users', {
             method: 'POST',
@@ -101,19 +101,13 @@ function Auth() {
                     value={formData.bio}
                     onChange={handleChange}
                 />
-<div className="file-input-container">
-  <label htmlFor="profile_image" className="file-input-button">
-    Choose File
-  </label>
-  <input
-    type="file"
-    id="profile_image"
-    className="file-input"
-    name="profile_image"
-    accept="image/*"
-    onChange={handleChange}
-  />
-</div>   
+                <label>Profile Image</label>
+                <input
+                    type='file'
+                    name='image'
+                    accept='image/*' // Allow only image files
+                    onChange={handleChange}
+                />
                 <button type='submit'>Sign Up</button>
             </form>
             <br></br>
