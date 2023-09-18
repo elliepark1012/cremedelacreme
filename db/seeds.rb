@@ -134,14 +134,16 @@ Menuitem.create({
     details:"Includes deep-fried spicy tuna and avocado topped with caviar, scallion, and eel sauce",
 })
 
-user1 = User.create(
-    {username:"elliepark", 
-    email:"elliepark@ellie.com", 
-    bio:"Food Magazin BonBon Editor", 
-    profile_image:"here is yours", 
-    password:"hi", 
-    password_confirmation:"hi"
-})
+User.create(
+    {
+        username: "ellie",
+        email: "ellie@ellie.com",
+        bio: "Been Eating a lot in NY",
+        profile_image: "https://hips.hearstapps.com/hmg-prod/images/cute-cat-captions-1563551865.jpg?crop=0.668xw:1.00xh;0.199xw,0&resize=980:*",
+        password: "ellie",
+        password_confirmation: "ellie"
+    }
+)
 
 User.create(
     {
@@ -153,6 +155,8 @@ User.create(
         password_confirmation: "password123"
     }
 )
+
+
 
 User.create(
     {
@@ -198,7 +202,7 @@ User.create(
     }
 )
 
-user_ids = (1..6).to_a
+user_ids = (1..7).to_a
 mar_menu_item_ids = (1..3).to_a
 han_menu_item_ids = (4..6).to_a
 ost_menu_item_ids = (7..9).to_a
@@ -207,7 +211,6 @@ ooi_menu_item_ids = (10..12).to_a
 ratings = (3..5).to_a
 
 mar_url = [
-    "https://media-cdn.tripadvisor.com/media/photo-s/0f/00/58/e8/martha-s-country-bakery.jpg",
     "https://media-cdn.tripadvisor.com/media/photo-s/15/f4/b5/7f/photo0jpg.jpg"
 ]
 

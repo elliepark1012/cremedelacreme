@@ -48,8 +48,8 @@ function Auth() {
                         email: '',
                         password: '',
                         password_confirmation: '',
-                        bio: '', // Clear bio field
-                        profile_image: null, // Clear profile image field
+                        bio: '', 
+                        profile_image: null, 
                     });
                     res.json().then(setCurrentUser);
                     navigate('/mypage');
