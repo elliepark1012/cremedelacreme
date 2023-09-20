@@ -1,3 +1,14 @@
-production:
-  adapter: sqlite3
-  database: db/production.sqlite3
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: postgres
+  password: elliepark
+
+development:
+  <<: *default
+  database: edata
+
+test:
+  <<: *default
+  database: etest

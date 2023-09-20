@@ -9,7 +9,7 @@ gem "bcrypt", "~> 3.1.7"
 gem "puma", "~> 5.0"
 gem 'rack-cors'
 gem "sprockets-rails"
-
+gem 'pg'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]

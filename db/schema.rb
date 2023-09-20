@@ -11,6 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_09_17_005250) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -44,7 +47,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_17_005250) do
     t.string "img_url"
     t.integer "price"
     t.string "details"
-    t.integer "restaurant_id", null: false
+    t.bigint "restaurant_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["restaurant_id"], name: "index_menuitems_on_restaurant_id"
@@ -66,8 +69,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_17_005250) do
     t.string "review_image"
     t.integer "ratings"
     t.string "comments"
-    t.integer "user_id", null: false
-    t.integer "menuitem_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "menuitem_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["menuitem_id"], name: "index_reviews_on_menuitem_id"
