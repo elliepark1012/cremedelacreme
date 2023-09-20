@@ -76,4 +76,7 @@ Rails.application.configure do
   config.active_storage.service = :amazon
   
   config.assets.compile = false
+
+  config.action_mailer.default_url_options = { host: "https://cremedelacreme-5a1e1342afea.herokuapp.com/"}
+  Rails.application.routes.default_url_options[:host]= "https://cremedelacreme-5a1e1342afea.herokuapp.com/"
   end # Add this 'end' to close the 'Rails.application.configure' block
