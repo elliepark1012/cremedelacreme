@@ -1,6 +1,8 @@
-# lib/tasks/
+# lib/tasks/assets.rake
+
 namespace :assets do
-  task :precompile do
-    # Code to precompile assets here
+  desc 'Clean compiled assets'
+  task :clean => :environment do
+    Rake::Task['assets:clobber'].invoke
   end
 end
