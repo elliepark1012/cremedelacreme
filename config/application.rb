@@ -39,7 +39,7 @@ module Cremedelacreme
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
-
+    config.assets.initialize_on_precompile = false
     config.assets.enabled = false
     config.api_only = true
     # Adding back cookies and session middleware
