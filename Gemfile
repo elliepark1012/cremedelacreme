@@ -8,6 +8,8 @@ gem "sqlite3", "~> 1.4"
 gem "bcrypt", "~> 3.1.7"
 gem "puma", "~> 5.0"
 gem 'rack-cors'
+gem "sprockets-rails"
+
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]

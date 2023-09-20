@@ -160,6 +160,13 @@ GEM
       psych (>= 4.0.0)
     reline (0.3.8)
       io-console (~> 0.5)
+    sprockets (4.2.1)
+      concurrent-ruby (~> 1.0)
+      rack (>= 2.2.4, < 4)
+    sprockets-rails (3.4.2)
+      actionpack (>= 5.2)
+      activesupport (>= 5.2)
+      sprockets (>= 3.0.0)
     sqlite3 (1.6.6-arm64-darwin)
     sqlite3 (1.6.6-x86_64-linux)
     stringio (3.0.8)
@@ -184,6 +191,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rack-cors
   rails (~> 7.0.7)
+  sprockets-rails
   sqlite3 (~> 1.4)
 
 RUBY VERSION
