@@ -68,13 +68,12 @@ Rails.application.configure do
       origins 'https://cremedelacreme-5a1e1342afea.herokuapp.com' # Replace with your Heroku app's domain
       resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options, :head]
     end
-  end # Add this 'end' to close the 'allow' block
-  # End of file (no 'end' for the 'config.middleware.insert_before' block)
-
+  end # Add this 'end' to close the 'config.middleware.insert_before' block
+  
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
   
-  config.active_storage.service = :amazon 
-
+  config.active_storage.service = :amazon
+  
   config.assets.compile = false
-end
+  end # Add this 'end' to close the 'Rails.application.configure' block
