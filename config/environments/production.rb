@@ -63,6 +63,12 @@
       config.logger    = ActiveSupport::TaggedLogging.new(logger)
     end
 
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins 'https://cremedelacreme-5a1e1342afea.herokuapp.com' # Replace with your Heroku app's domain
+        resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options, :head]
+      end
+
     # Do not dump schema after migrations.
     config.active_record.dump_schema_after_migration = false
     
