@@ -33,10 +33,6 @@ function ReviewForm({ addReview, menuitem }) {
         });
       } else {
         alert('Please put the number in between 0 to 5')
-        // setFormData({
-        //   ...formData,
-        //   [name]: 0, // You can set it to a default value or display an error message here.
-        // });
       }
     } else if (name === 'review_image') {
       const sanitizedValue = value.trim();
@@ -56,8 +52,7 @@ function ReviewForm({ addReview, menuitem }) {
   function onSubmit(e) {
     e.preventDefault();
     console.log(formData);
-    
-    // Check if menuitem.id is defined and truthy
+  
     if (menuitem.id) {
       fetch('/reviews', {
         method: 'POST',
@@ -76,7 +71,6 @@ function ReviewForm({ addReview, menuitem }) {
         }
       });
     } else {
-      // Handle the case where menuitem.id is not available or invalid
       console.error('Invalid menuitem.id:', menuitem.id);
     }
   }
@@ -84,7 +78,7 @@ function ReviewForm({ addReview, menuitem }) {
   return (
     <div className="formbox">
       <form onSubmit={onSubmit}>
-        <label>Rate this menu</label>
+        <label>Rate This Menuitem</label>
         <input
           type="number"
           name="ratings"

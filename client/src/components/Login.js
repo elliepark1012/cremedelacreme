@@ -7,7 +7,7 @@ function Login({ updateUser }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [login, setLogin] = useState('');
-  const [errors, setErrors] = useState([]);
+  const [error, setError] = useState([]);
 
   function onSubmit(e) {
     e.preventDefault();
@@ -30,10 +30,7 @@ function Login({ updateUser }) {
           });
         } else {
           res.json().then((errorData) => {
-            const errorMessage = Object.entries(errorData.errors)
-              .map((entry) => entry[1])
-              .join(' '); // Join the error messages with a space
-            setErrors(errorMessage);
+            setError(errorData.errors);
           });
         }
       });
@@ -43,11 +40,10 @@ function Login({ updateUser }) {
     <div>
       <video className='backVideo' src={mainVideo} autoPlay loop muted />
       <form className='loginbox' onSubmit={onSubmit}>
-        <div className='errorbox'>
-          {errors ? (
-            <div className='error'>{errors}</div>
-          ) : null}
-        </div>
+      <div className='errorbox'>
+        {error ? <div className='error'>{error}</div> : null}
+      </div>
+
         <label>Username</label>
         <input
           type='text'
