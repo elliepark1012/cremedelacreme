@@ -3,25 +3,6 @@ CREME DE LE CREME
 ## Description
 
 CREME DE LA CREME is for finding the right menu for your restaurant experience with reviews for menus not  for restaurant, so that you get more speicific ideas what to choose.  
-
-## Table of Contents
-
-- [Project Name](#project-name)
-- [Description](#description)
-- [Table of Contents](#table-of-contents)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-- [Usage](#usage)
-- [Backend (Ruby on Rails)](#backend-ruby-on-rails)
-  - [Configuration](#configuration)
-  - [Running the Server](#running-the-server)
-- [Frontend (React)](#frontend-react)
-  - [Configuration](#configuration-1)
-  - [Starting the Development Server](#starting-the-development-server)
-- [Contributing](#contributing)
-- [License](#license)
-
 ## Getting Started
 
 ### Prerequisites
@@ -35,7 +16,8 @@ CREME DE LA CREME is for finding the right menu for your restaurant experience w
 
 - CSS
 
-- Render
+- Rendering with Heroku 
+
 ## Usage
 - mypage after login or signup with the user profile with image using active storage, and list of reviews of current user (edit, delete review)
 ![Local Image](./images/mypage.png)
