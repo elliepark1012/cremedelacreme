@@ -7,9 +7,9 @@ CREME DE LA CREME is for finding the right menu for your restaurant experience w
 
 ### Prerequisites
 - Rails 
-1. bundle install 
-2. rails db:create
-3. rails db:drop 
+1. bundle install '
+2. rails db:drop 
+3. rails db:create
 4. rails db:migrate db:seed 
 5. rails server (s)
 
