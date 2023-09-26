@@ -9,7 +9,7 @@ local:
 
 amazon:
   service: S3
-  access_key_id: AKIAR2PK4WNZ32XWA5NY
-  secret_access_key: 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
+  access_key_id: AKIAR2PK4WNZ52XRP2WK
+  secret_access_key: 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
   region: us-east-2
   bucket: cremeuserimagebucket

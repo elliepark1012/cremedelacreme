@@ -6,8 +6,16 @@ CREME DE LA CREME is for finding the right menu for your restaurant experience w
 ## Getting Started
 
 ### Prerequisites
+- Rails 
+1. bundle install 
+2. rails db:create
+3. rails db:drop 
+4. rails db:migrate db:seed 
+5. rails server (s)
 
-- Install NPM packages $ npm install
+- React 
+1. npm install
+2. npm start
 ### Built With
 
 - React

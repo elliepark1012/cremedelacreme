@@ -25,6 +25,7 @@ function Auth() {
         } else {
             setFormData({ ...formData, [name]: value });
         }
+        console.log('hi')
     };
 
     function onSubmit(e) {
@@ -35,7 +36,7 @@ function Auth() {
         formDataWithImage.append('password', formData.password);
         formDataWithImage.append('password_confirmation', formData.password_confirmation);
         formDataWithImage.append('bio', formData.bio); 
-        formDataWithImage.append('image', formData.image); 
+        formDataWithImage.append('image', formData.profile_image); 
 
         fetch('/users', {
             method: 'POST',
@@ -103,14 +104,15 @@ function Auth() {
                 />
                 <label>Profile Image</label>
                 <div className="file-input-container">
-                    <input
-                        type='file'
-                        name='image'
-                        accept='image/*' 
-                        onChange={handleChange}
-                        className="file-input"
-                    />
-                    <label htmlFor="image" className="file-label">Choose File</label>
+                <input
+                            type='file'
+                            name='profile_image'
+                            accept='image/*' 
+                            onChange={handleChange}
+                            className="file-input"
+                            id="profile_image"  
+                        />
+                    <label htmlFor="profile_image" className="file-label">Choose File</label>
                 </div>
                 <button type='submit'>Sign Up</button>
             </form>
