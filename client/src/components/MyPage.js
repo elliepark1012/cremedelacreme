@@ -66,7 +66,6 @@ const MyPage = () => {
   return (
     <>
       <UserProfile user={currentUser} /> 
-      <img src={currentUser.profile_image_url} alt="Profile Image" />
       <div className="grid" id="review-grid">
         {reviews &&
           reviews.map((review) => (
