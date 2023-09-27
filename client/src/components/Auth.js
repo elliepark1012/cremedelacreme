@@ -7,6 +7,8 @@ function Auth() {
     const { setCurrentUser } = useContext(AppContext);
 
     const [errors, setErrors] = useState([]);
+    const [imagePreview, setImagePreview] = useState(null);
+
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
@@ -20,23 +22,34 @@ function Auth() {
 
     const handleChange = (e) => {
         const { name, value, type, files } = e.target;
+        
         if (type === 'file') {
-            setFormData({ ...formData, [name]: files[0] });
+            const selectedImage = files[0];
+            setFormData({ ...formData, [name]: selectedImage });
+    
+            // Generate a preview URL for the selected image
+            if (selectedImage) {
+                const imageURL = URL.createObjectURL(selectedImage);
+                setImagePreview(imageURL);
+            } else {
+                setImagePreview(null);
+            }
         } else {
             setFormData({ ...formData, [name]: value });
         }
-        console.log('hi')
     };
+    
 
     function onSubmit(e) {
         e.preventDefault();
         const formDataWithImage = new FormData();
-        formDataWithImage.append('username', formData.username);
-        formDataWithImage.append('email', formData.email);
-        formDataWithImage.append('password', formData.password);
-        formDataWithImage.append('password_confirmation', formData.password_confirmation);
-        formDataWithImage.append('bio', formData.bio); 
-        formDataWithImage.append('image', formData.profile_image); 
+formDataWithImage.append('user[username]', formData.username);
+formDataWithImage.append('user[email]', formData.email);
+formDataWithImage.append('user[password]', formData.password);
+formDataWithImage.append('user[password_confirmation]', formData.password_confirmation);
+formDataWithImage.append('user[bio]', formData.bio); 
+formDataWithImage.append('user[profile_image]', formData.profile_image); 
+
 
         fetch('/users', {
             method: 'POST',
@@ -112,6 +125,9 @@ function Auth() {
                             className="file-input"
                             id="profile_image"  
                         />
+                        {imagePreview && (
+    <img src={imagePreview} alt="Image Preview" className="image-preview" />
+)}  
                     <label htmlFor="profile_image" className="file-label">Choose File</label>
                 </div>
                 <button type='submit'>Sign Up</button>

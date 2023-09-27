@@ -1,10 +1,10 @@
+// UserProfile.js
 import React from 'react';
-import AppContext from '../context/AppContext';
-import { useContext } from 'react';
 
-const UserProfile = () => {
-  const { currentUser } = useContext(AppContext);
-  const { username, bio, email, profile_image_url } = currentUser;
+const UserProfile = ({ user }) => {
+  const { username, bio, email, profile_image_url } = user;
+
+  console.log(profile_image_url)
 
   return (
     <div className="user-profile-card">
@@ -14,7 +14,7 @@ const UserProfile = () => {
           <div className="user-container">
             <div className="user-avatar">
               <img
-                src={profile_image_url}
+                src={profile_image_url} // Display the profile_image_url
                 alt={`${username}'s Avatar`}
                 className="centered-image"
               />

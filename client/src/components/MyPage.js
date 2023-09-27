@@ -2,7 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import AppContext from "../context/AppContext";
 import ReviewEditForm from './ReviewEditForm';
 import MyReview from "./MyReview";
-import UserProfile from "./UserProfile"; // Separate component for user profile rendering
+import UserProfile from "./UserProfile"; 
 
 const MyPage = () => {
   const { currentUser } = useContext(AppContext);
@@ -61,12 +61,13 @@ const MyPage = () => {
       });
   };
 
-  
+  console.log(currentUser.username)
+  console.log(currentUser.profile_image_url)
   return (
     <>
-      <UserProfile user={currentUser} /> {/* Render user profile information */}
+      <UserProfile user={currentUser} /> 
+      <img src={currentUser.profile_image_url} alt="Profile Image" />
       <div className="grid" id="review-grid">
-        {/* Render reviews */}
         {reviews &&
           reviews.map((review) => (
             <div key={review.id}>
