@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import AppContext from "../context/AppContext";
+import { AppContext } from '../context/AppContext';
 import { useNavigate, Link } from 'react-router-dom';
 import mainVideo from '../assets/main.mp4';
 
@@ -126,7 +126,7 @@ formDataWithImage.append('user[profile_image]', formData.profile_image);
                             id="profile_image"  
                         />
                         {imagePreview && (
-    <img src={imagePreview} alt="Image Preview" className="image-preview" />
+    <img src={imagePreview} alt="Preview" className="image-preview" />
 )}  
                     <label htmlFor="profile_image" className="file-label">Choose File</label>
                 </div>

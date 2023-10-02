@@ -1,12 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import { BrowserRouter } from 'react-router-dom';
+import ReactDOM from 'react-dom';
+import AppWithProvider from './App'; // Import your AppWithProvider component
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
+ReactDOM.render(
+  <React.StrictMode>
+    <AppWithProvider /> {/* Render your AppWithProvider component */}
+  </React.StrictMode>,
+  document.getElementById('root')
 );

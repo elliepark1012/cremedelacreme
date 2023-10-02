@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
-
 function ReviewForm({ addReview, menuitem }) {
   const [errors, setErrors] = useState([]);
-
-
   const [formData, setFormData] = useState({
-    review_image: '',
     ratings: 0,
     comments: '',
-    menuitem_id: undefined,
+    image: null
   });
 
   useEffect(() => {
-    if (menuitem.id !== undefined) {
+    if (menuitem.id) {
       setFormData((prevFormData) => ({
         ...prevFormData,
         menuitem_id: menuitem.id,
@@ -22,8 +18,8 @@ function ReviewForm({ addReview, menuitem }) {
   }, [menuitem.id]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-  
+    const { name, value, type, files } = e.target;
+
     if (name === 'ratings') {
       const sanitizedValue = parseInt(value, 10);
       if (!isNaN(sanitizedValue) && sanitizedValue >= 0 && sanitizedValue <= 5) {
@@ -32,52 +28,54 @@ function ReviewForm({ addReview, menuitem }) {
           [name]: sanitizedValue,
         });
       } else {
-        alert('Please put the number in between 0 to 5')
+        alert('Please put the number in between 0 to 5');
       }
-    } else if (name === 'review_image') {
-      const sanitizedValue = value.trim();
-      const defaultImageURL = 'https://www.clearbrook.org/wp-content/uploads/2019/09/Coming-Soon.jpg';
-      setFormData({
-        ...formData,
-        [name]: sanitizedValue === '' ? defaultImageURL : sanitizedValue,
-      });
     } else {
       setFormData({
         ...formData,
-        [name]: value,
+        [name]: type === 'file' ? files[0] : value,
       });
     }
-  };  
-  
-  function onSubmit(e) {
+  };
+
+  const onSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
-  
-    if (menuitem.id) {
-      fetch('/reviews', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      })
+    
+    const formDataToSend = new FormData();
+    formDataToSend.append('ratings', formData.ratings);
+    formDataToSend.append('comments', formData.comments);
+    formDataToSend.append('menuitem_id', formData.menuitem_id);
+    formDataToSend.append('review_image', formData.review_image);
+
+    fetch('/reviews', {
+      method: 'POST',
+      body: formDataToSend,
+    })
       .then((res) => {
         if (res.ok) {
-          res.json().then(addReview);
+          return res.json();
         } else {
-          res.json().then((errorData) =>
-            setErrors(
-              Object.entries(errorData.errors).map((e) => `${e[0]} ${e[1]}`)
-            )
-          );
+          throw new Error('Review submission failed');
         }
+      })
+      .then((data) => {
+        // Clear the form and add the new review
+        setFormData({
+          ratings: 0,
+          comments: '',
+          review_image: null,
+        });
+        addReview(data);
+      })
+      .catch((error) => {
+        console.error(error);
+        setErrors(['Review submission failed']);
       });
-    } else {
-      console.error('Invalid menuitem.id:', menuitem.id);
-    }
-  }
+  };
 
   return (
     <div className="formbox">
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} encType="multipart/form-data">
         <label>Rate This Menuitem</label>
         <input
           type="number"
@@ -98,15 +96,18 @@ function ReviewForm({ addReview, menuitem }) {
         <label>Photos</label>
         <input
           className="nameinput"
-          type="text"
+          type="file"
           name="review_image"
-          value={formData.review_image}
           onChange={handleChange}
         />
 
         <button type="submit">Thank you for your honest review</button>
         <div className="errorbox">
-          {errors ? errors.map((e) => <div className="error">{e}</div>) : null}
+          {errors.length > 0 ? (
+            errors.map((e, index) => <div className="error" key={index}>{e}</div>)
+          ) : (
+            <div className="error">No errors</div>
+          )}
         </div>
       </form>
     </div>

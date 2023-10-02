@@ -1,4 +1,4 @@
-import AppContext from "../context/AppContext";
+import { AppContext } from '../context/AppContext';
 import { useContext } from "react";
 import Restaurant from "./Restaurant";
 import React from 'react';

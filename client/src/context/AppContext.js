@@ -1,5 +1,16 @@
-import React from 'react';
+import React, { createContext, useState } from 'react';
 
-const AppContext = React.createContext();
+export const AppContext = createContext();
 
-export default AppContext;
+export const AppProvider = ({ children }) => {
+  const [restaurants, setRestaurants] = useState([]);
+  const [currentUser, setCurrentUser] = useState(null);
+
+  const updateUser = (user) => setCurrentUser(user); // Make sure updateUser is defined
+
+  return (
+    <AppContext.Provider value={{ restaurants, setRestaurants, currentUser, setCurrentUser, updateUser }}>
+      {children}
+    </AppContext.Provider>
+  );
+};

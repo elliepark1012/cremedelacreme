@@ -1,15 +1,17 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import AppContext from "../context/AppContext";
 import { useContext } from "react";
+import { AppContext } from '../context/AppContext';
 import ReviewForm from './ReviewForm';
 import { useNavigate } from 'react-router-dom';
 import MenuReview from './MenuReview';
 
 const MenuDetail = () => {
+  const {currentUser, setCurrentUser} = useContext(AppContext)
+
     const { id } = useParams();
     const [menuitem, setMenuitem] = useState([])
-    const {currentUser, setCurrentUser} = useContext(AppContext)
+
 
     const navigate = useNavigate();
 
@@ -62,7 +64,7 @@ const MenuDetail = () => {
         <div className='info-container'>
           <div className='info-text'>
             <h1>{name} ${price}</h1>
-            <h2>{ave_ratings}</h2>
+            <h2>Ave_ratings: {ave_ratings}</h2>
             <h2>{details}</h2>
           </div>
           <img className='logo-detail' src={img_url} alt={name} />

@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import mainVideo from '../assets/main.mp4';
+import { AppContext } from '../context/AppContext';
 
-function Login({ updateUser }) {
+function Login() {
+
+  const {updateUser} = useContext(AppContext)
+
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [login, setLogin] = useState('');
   const [error, setError] = useState([]);
+  
 
   function onSubmit(e) {
     e.preventDefault();

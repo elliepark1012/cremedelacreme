@@ -6,4 +6,4 @@ class Menuitem < ApplicationRecord
     return 0 unless reviews.count.positive? 
     reviews.average(:ratings).round(2).to_f
   end
-end
+end 

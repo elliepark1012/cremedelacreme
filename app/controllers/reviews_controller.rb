@@ -12,19 +12,14 @@ def show
 end 
 
 def create
-    if current_user.nil?
-      render json: { error: "User not authenticated" }, status: :unauthorized
-      return
-    end
-  
-    review = current_user.reviews.build(review_params)
-  
-    if review.save
-      render json: review, status: :created
-    else
-      render json: { errors: review.errors.full_messages }, status: :unprocessable_entity
-    end
-  end   
+  review = Review.new(review_params)
+
+  if review.save
+    render json: review, status: :created
+  else
+    render json: { errors: review.errors.full_messages }, status: :unprocessable_entity
+  end
+end
 
 def update 
     review = current_user.reviews.find(params[:id])
@@ -44,8 +39,8 @@ end
 private
     
 def review_params
-    params.permit(:menuitem_id, :review_image, :ratings, :comments)
-end 
+  params.permit(:ratings, :comments, :menuitem_id, :review_image)
+end
 
 end 
 
@@ -58,33 +53,3 @@ end
 
 
 
-#     def destroy
-#         signup = current_user.signups.find_by(id: params[:id])
-#             if signup
-#                 signup.destroy
-#                 head :no_content
-#             else
-#                 render json: { error: "Sign Up not found"}, status: :not_found
-#             end
-#      end
-
-#      def number
-#         #  /signups/3 => {partipants is at least 3 signups}
-#         # 1. map signups get the numbers of participants 2. compare it with number 3. return opportunity that related to the ones 
-#         signupsArray = current_user.signups.filter {|s| s.participants >= params[:num].to_i}
-#         opportunities = signupsArray.map{|s| s.opportunity}
-#         if  opportunities.empty?   
-#             render json: { error: "No Sign up matched"}
-            
-#         else 
-#             render json: opportunities, status: :ok
-#         end
-#      end 
-
-
-#     private
-
-#     def signup_params
-#         params.permit(:opportunity_id, :participants, :extras, :donation)
-#     end 
-# end
