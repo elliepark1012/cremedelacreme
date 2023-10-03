@@ -76,7 +76,7 @@ function ReviewForm({ addReview, menuitem }) {
   return (
     <div className="formbox">
       <form onSubmit={onSubmit} encType="multipart/form-data">
-        <label>Rate This Menu</label>
+        <label>Rate This Menu Item</label>
         <input
           type="number"
           name="ratings"
