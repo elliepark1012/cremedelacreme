@@ -27,7 +27,6 @@ function Auth() {
             const selectedImage = files[0];
             setFormData({ ...formData, [name]: selectedImage });
     
-            // Generate a preview URL for the selected image
             if (selectedImage) {
                 const imageURL = URL.createObjectURL(selectedImage);
                 setImagePreview(imageURL);
