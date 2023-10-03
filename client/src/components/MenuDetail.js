@@ -64,7 +64,7 @@ const MenuDetail = () => {
         <div className='info-container'>
           <div className='info-text'>
             <h1>{name} ${price}</h1>
-            <h2>Average ratings: {ave_ratings}</h2>
+            <h2>Average Rating: {ave_ratings? ave_ratings: 0}</h2>
             <h2>{details}</h2>
           </div>
           <img className='logo-detail' src={img_url} alt={name} />
