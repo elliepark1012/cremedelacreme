@@ -252,52 +252,122 @@ comments = [
   "Innovative and thoroughly enjoyable."
 ]
 
-    5.times do
-        review = Review.create(
-          {
-            user_id: user_ids.sample,
-            menuitem_id: mar_menu_item_ids.sample,
-            review_image: mar_url.sample,  # Select a random URL from mar_url
-            ratings: ratings.sample,
-            comments: comments.sample
-          }
-        )
-      end
+    # 5.times do
+    #     review = Review.create(
+    #       {
+    #         user_id: user_ids.sample,
+    #         menuitem_id: mar_menu_item_ids.sample,
+    #         review_image: mar_url.sample,  # Select a random URL from mar_url
+    #         ratings: ratings.sample,
+    #         comments: comments.sample
+    #       }
+    #     )
+    #   end
       
-      5.times do
-        review = Review.create(
-          {
-            user_id: user_ids.sample,
-            menuitem_id: han_menu_item_ids.sample,
-            review_image: han_url.sample,  # Select a random URL from han_url
-            ratings: ratings.sample,
-            comments: comments.sample
-          }
-        )
-      end
+    #   5.times do
+    #     review = Review.create(
+    #       {
+    #         user_id: user_ids.sample,
+    #         menuitem_id: han_menu_item_ids.sample,
+    #         review_image: han_url.sample,  # Select a random URL from han_url
+    #         ratings: ratings.sample,
+    #         comments: comments.sample
+    #       }
+    #     )
+    #   end
       
-      5.times do
-        review = Review.create(
-          {
-            user_id: user_ids.sample,
-            menuitem_id: ost_menu_item_ids.sample,
-            review_image: ost_url.sample,  # Select a random URL from ost_url
-            ratings: ratings.sample,
-            comments: comments.sample
-          }
-        )
-      end
+    #   5.times do
+    #     review = Review.create(
+    #       {
+    #         user_id: user_ids.sample,
+    #         menuitem_id: ost_menu_item_ids.sample,
+    #         review_image: ost_url.sample,  # Select a random URL from ost_url
+    #         ratings: ratings.sample,
+    #         comments: comments.sample
+    #       }
+    #     )
+    #   end
       
-      5.times do
-        review = Review.create(
-          {
-            user_id: user_ids.sample,
-            menuitem_id: ooi_menu_item_ids.sample,
-            review_image: ooi_url.sample,  # Select a random URL from ooi_url
-            ratings: ratings.sample,
-            comments: comments.sample
-          }
-        )
-      end
+    #   5.times do
+    #     review = Review.create(
+    #       {
+    #         user_id: user_ids.sample,
+    #         menuitem_id: ooi_menu_item_ids.sample,
+    #         review_image: ooi_url.sample,  # Select a random URL from ooi_url
+    #         ratings: ratings.sample,
+    #         comments: comments.sample
+    #       }
+    #     )
+    #   end
 
     
+      # Assuming you have image files located in your Rails project's "app/assets/images" directory.
+# You can replace these paths with your actual image file paths.
+
+mar_images = [
+    Rails.root.join('app', 'assets', 'images', 'mar_image1.jpg'),
+    Rails.root.join('app', 'assets', 'images', 'mar_image2.jpg')
+  ]
+  
+  han_images = [
+    Rails.root.join('app', 'assets', 'images', 'han_image1.jpg'),
+    Rails.root.join('app', 'assets', 'images', 'han_image2.jpg')
+  ]
+  
+  ost_images = [
+    Rails.root.join('app', 'assets', 'images', 'ost_image1.jpg'),
+    Rails.root.join('app', 'assets', 'images', 'ost_image2.jpg')
+  ]
+  
+  ooi_images = [
+    Rails.root.join('app', 'assets', 'images', 'ooi_image1.jpg'),
+    Rails.root.join('app', 'assets', 'images', 'ooi_image2.jpg')
+  ]
+  
+  5.times do
+    review = Review.create(
+      {
+        user_id: user_ids.sample,
+        menuitem_id: mar_menu_item_ids.sample,
+        ratings: ratings.sample,
+        comments: comments.sample
+      }
+    )
+    review.review_image.attach(io: File.open(mar_images.sample), filename: 'mar_image.jpg')
+  end
+  
+  5.times do
+    review = Review.create(
+      {
+        user_id: user_ids.sample,
+        menuitem_id: han_menu_item_ids.sample,
+        ratings: ratings.sample,
+        comments: comments.sample
+      }
+    )
+    review.review_image.attach(io: File.open(han_images.sample), filename: 'han_image.jpg')
+  end
+
+  5.times do
+    review = Review.create(
+      {
+        user_id: user_ids.sample,
+        menuitem_id: ost_menu_item_ids.sample,
+        ratings: ratings.sample,
+        comments: comments.sample
+      }
+    )
+    review.review_image.attach(io: File.open(ost_images.sample), filename: 'ost_image.jpg')
+  end
+
+  5.times do
+    review = Review.create(
+      {
+        user_id: user_ids.sample,
+        menuitem_id: ooi_menu_item_ids.sample,
+        ratings: ratings.sample,
+        comments: comments.sample
+      }
+    )
+    review.review_image.attach(io: File.open(ooi_images.sample), filename: 'ooi_image.jpg')
+  end
