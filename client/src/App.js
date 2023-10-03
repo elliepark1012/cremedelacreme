@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
 import RestaurantDetail from './components/RestaurantDetail';
 import Restaurants from './components/Restaurants';
@@ -14,6 +14,8 @@ import { AppContext } from './context/AppContext'
 
 function App() {
   const { setRestaurants, updateUser, currentUser } = useContext(AppContext); 
+  const [loadingUser, setLoadingUser] = useState(true);
+
 
   useEffect(() => {
     fetch('/me')
@@ -24,30 +26,39 @@ function App() {
           throw new Error('Network response was not OK');
         }
       })
-      .then((user) => updateUser(user))
+      .then((user) => {
+        updateUser(user);
+        setLoadingUser(false);
+      })
       .catch((error) => {
         console.error('Error fetching user:', error);
+        setLoadingUser(false); 
       });
   }, []);
-
-  console.log(currentUser)
 
   useEffect(() => {
-    fetch('/restaurants')
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          throw new Error('Network response was not ok');
-        }
-      })
-      .then((restaurants) => {
-        setRestaurants(restaurants);
-      })
-      .catch((error) => {
-        console.log('Error fetching restaurants:', error);
-      });
-  }, []);
+    if (!loadingUser) {
+      // Only fetch restaurants when user data is available
+      fetch('/restaurants')
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          } else {
+            throw new Error('Network response was not ok');
+          }
+        })
+        .then((restaurants) => {
+          setRestaurants(restaurants);
+        })
+        .catch((error) => {
+          console.log('Error fetching restaurants:', error);
+        });
+    }
+  }, [loadingUser]);
+
+  if (loadingUser) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Router>
