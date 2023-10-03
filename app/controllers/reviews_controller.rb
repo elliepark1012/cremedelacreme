@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-    skip_before_action :authorized
+  skip_before_action :authorized, only: [:index, :show]
 
 def index 
     reviews = current_user.reviews
