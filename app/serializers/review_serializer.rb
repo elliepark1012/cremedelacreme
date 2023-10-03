@@ -9,7 +9,7 @@ class ReviewSerializer < ActiveModel::Serializer
     else
       'https://cdn3.iconfinder.com/data/icons/essential-rounded/64/Rounded-31-1024.png'
     end
-  end
+  end   
 
   def user_name
     object.user.username

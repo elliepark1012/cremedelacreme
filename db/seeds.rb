@@ -251,17 +251,6 @@ comments = [
   "Simple yet satisfying.",
   "Innovative and thoroughly enjoyable."
 ]
-3.times do
-    review = Review.create(
-        {
-        user_id: user_ids.sample,
-        menuitem_id: mar_menu_item_ids.sample,
-        review_image: mar_url,
-        ratings: ratings.sample,
-        comments: comments.sample
-        }
-    )
-    end
 
     5.times do
         review = Review.create(
@@ -310,3 +299,5 @@ comments = [
           }
         )
       end
+
+    
