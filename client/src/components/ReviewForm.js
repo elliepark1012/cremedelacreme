@@ -5,7 +5,7 @@ function ReviewForm({ addReview, menuitem }) {
   const [formData, setFormData] = useState({
     ratings: 0,
     comments: '',
-    image: null
+    review_image: null, 
   });
 
   useEffect(() => {
@@ -40,13 +40,13 @@ function ReviewForm({ addReview, menuitem }) {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    
+  
     const formDataToSend = new FormData();
     formDataToSend.append('ratings', formData.ratings);
     formDataToSend.append('comments', formData.comments);
     formDataToSend.append('menuitem_id', formData.menuitem_id);
     formDataToSend.append('review_image', formData.review_image);
-
+  
     fetch('/reviews', {
       method: 'POST',
       body: formDataToSend,
@@ -55,11 +55,12 @@ function ReviewForm({ addReview, menuitem }) {
         if (res.ok) {
           return res.json();
         } else {
-          throw new Error('Review submission failed');
+          return res.json().then((data) => {
+            throw new Error(data.errors[0]);
+          });
         }
       })
       .then((data) => {
-        // Clear the form and add the new review
         setFormData({
           ratings: 0,
           comments: '',
@@ -69,14 +70,13 @@ function ReviewForm({ addReview, menuitem }) {
       })
       .catch((error) => {
         console.error(error);
-        setErrors(['Review submission failed']);
+        setErrors([error.message]);
       });
   };
-
   return (
     <div className="formbox">
       <form onSubmit={onSubmit} encType="multipart/form-data">
-        <label>Rate This Menuitem</label>
+        <label>Rate This Menu</label>
         <input
           type="number"
           name="ratings"

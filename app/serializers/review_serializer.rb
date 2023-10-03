@@ -4,10 +4,10 @@ class ReviewSerializer < ActiveModel::Serializer
   belongs_to :menuitem
 
   def review_image_url
-    if object.review_image.is_a?(ActiveStorage::Attached::One) && object.review_image.attached?
+    if object.review_image.attached?
       Rails.application.routes.url_helpers.rails_blob_path(object.review_image, only_path: true)
     else
-      object.review_image
+      'https://cdn3.iconfinder.com/data/icons/essential-rounded/64/Rounded-31-1024.png'
     end
   end
 

@@ -14,12 +14,17 @@ end
 def create
   review = Review.new(review_params)
 
-  if review.save
-    render json: review, status: :created
+  if review.valid? 
+    if review.save
+      render json: review, status: :created
+    else
+      render json: { errors: review.errors.full_messages }, status: :unprocessable_entity
+    end
   else
-    render json: { errors: review.errors.full_messages }, status: :unprocessable_entity
+    render json: { errors: ['Invalid rating. Please enter a number between 1 and 5.'] }, status: :unprocessable_entity
   end
 end
+
 
 def update 
     review = current_user.reviews.find(params[:id])
