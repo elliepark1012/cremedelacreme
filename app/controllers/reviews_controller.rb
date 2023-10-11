@@ -12,19 +12,20 @@ def show
 end 
 
 def create
-  if current_user.nil?
-    render json: { error: "User not authenticated" }, status: :unauthorized
-    return
+  if params['review']['review_image'] == "null"
+    params['review']['review_image'] = nil
   end
 
   review = current_user.reviews.build(review_params)
+  puts "Review Params: #{review_params.inspect}" 
 
   if review.save
     render json: review, status: :created
   else
+    puts "Review Errors: #{review.errors.full_messages}" 
     render json: { errors: review.errors.full_messages }, status: :unprocessable_entity
   end
-end  
+end
 
 
 def update 
@@ -45,7 +46,7 @@ end
 private
     
 def review_params
-  params.permit(:ratings, :comments, :menuitem_id, :review_image)
+  params.require(:review).permit(:ratings, :comments, :menuitem_id, :review_image)
 end
 
 end 

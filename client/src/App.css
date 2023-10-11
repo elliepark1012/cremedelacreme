@@ -364,3 +364,7 @@ strong {
 .file-label:hover {
   background-color: #000000;
 }
+
+.comment {
+  color: red;
+}

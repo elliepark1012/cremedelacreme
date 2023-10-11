@@ -17,27 +17,27 @@ function Auth() {
         password: '',
         password_confirmation: '',
         bio: '', 
-        image: null, 
+        profile_image: null, 
     });
+    
 
     const handleChange = (e) => {
         const { name, value, type, files } = e.target;
         
         if (type === 'file') {
             const selectedImage = files[0];
-            setFormData({ ...formData, [name]: selectedImage });
-    
             if (selectedImage) {
+                setFormData({ ...formData, [name]: selectedImage });
                 const imageURL = URL.createObjectURL(selectedImage);
                 setImagePreview(imageURL);
             } else {
+                setFormData({ ...formData, [name]: null });
                 setImagePreview(null);
             }
         } else {
             setFormData({ ...formData, [name]: value });
         }
     };
-    
 
     function onSubmit(e) {
         e.preventDefault();
@@ -74,10 +74,12 @@ formDataWithImage.append('user[profile_image]', formData.profile_image);
             });
     }
 
+    
+
     return (
         <div className='formbox'>
             <video className='backVideo' src={mainVideo} autoPlay loop muted />
-            <form onSubmit={onSubmit}>
+            <form onSubmit={onSubmit} encType="multipart/form-data">
                 <h5>SIGN UP WITH US</h5>
                 <div className='errorbox'>{errors ? errors.map(e => <div className='error'>{e}</div>) : null}</div>
                 <label>Username</label>

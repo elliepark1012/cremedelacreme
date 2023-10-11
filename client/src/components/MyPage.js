@@ -1,21 +1,17 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import { AppContext } from '../context/AppContext';
 import ReviewEditForm from './ReviewEditForm';
 import MyReview from "./MyReview";
 import UserProfile from "./UserProfile"; 
 
 const MyPage = () => {
-  const { currentUser } = useContext(AppContext);
+  const { currentUser, setCurrentUser } = useContext(AppContext);
   const [editingReview, setEditingReview] = useState(null);
-  const [reviews, setReviews] = useState(currentUser.reviews);
-
-  useEffect(() => {
-    setReviews(currentUser.reviews);
-  }, [currentUser]);
 
   const handleEditReview = (review) => {
     setEditingReview(review);
   };
+
   const handleSaveEditedReview = (editedReview) => {
     fetch(`/reviews/${editingReview.id}`, {
       method: 'PATCH',
@@ -26,10 +22,10 @@ const MyPage = () => {
     })
       .then((response) => {
         if (response.ok) {
-          const updatedReviews = reviews.map((r) =>
+          const updatedReviews = currentUser.reviews.map((r) =>
             r.id === editingReview.id ? editedReview : r
           );
-          setReviews(updatedReviews);
+          setCurrentUser({ ...currentUser, reviews: updatedReviews });
           setEditingReview(null);
         } else {
           console.error('Failed to update the review');
@@ -50,8 +46,8 @@ const MyPage = () => {
     })
       .then((response) => {
         if (response.ok) {
-          const updatedReviews = reviews.filter((r) => r.id !== review.id);
-          setReviews(updatedReviews);
+          const updatedReviews = currentUser.reviews.filter((r) => r.id !== review.id);
+          setCurrentUser({ ...currentUser, reviews: updatedReviews });
         } else {
           console.error('Failed to delete the review');
         }
@@ -61,14 +57,16 @@ const MyPage = () => {
       });
   };
 
-  console.log(currentUser.username)
-  console.log(currentUser.profile_image_url)
+  if (!currentUser) {
+    return <div>Loading...</div>; 
+  }
+
   return (
     <>
       <UserProfile user={currentUser} /> 
       <div className="grid" id="review-grid">
-        {reviews &&
-          reviews.map((review) => (
+        {currentUser.reviews &&
+          currentUser.reviews.map((review) => (
             <div key={review.id}>
               {editingReview && editingReview.id === review.id ? (
                 <ReviewEditForm

@@ -14,7 +14,7 @@ const UserProfile = ({ user }) => {
           <div className="user-container">
             <div className="user-avatar">
               <img
-                src={profile_image_url} // Display the profile_image_url
+                src={profile_image_url} 
                 alt={`${username}'s Avatar`}
                 className="centered-image"
               />
