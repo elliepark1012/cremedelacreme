@@ -6,7 +6,6 @@ export const AppProvider = ({ children }) => {
   const [restaurants, setRestaurants] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
 
-  console.log(currentUser)
   const updateUser = (user) => setCurrentUser(user); // Make sure updateUser is defined
 
   return (

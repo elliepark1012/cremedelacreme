@@ -43,6 +43,8 @@ const MenuDetail = () => {
   const { name, img_url, price, details, ave_ratings } = menuitem;
   const reviews = menuitem.reviews
 
+  console.log(menuitem)
+
   const addReview = (review) => {
     const newReviews = [...currentUser.reviews, review];
     const updatedMenuitem = { ...menuitem };
@@ -64,7 +66,7 @@ const MenuDetail = () => {
         <div className='info-container'>
           <div className='info-text'>
             <h1>{name} ${price}</h1>
-            <h2>Average Rating: {ave_ratings? ave_ratings: 0}</h2>
+            <h2>Average Rating: {ave_ratings}</h2>
             <h2>{details}</h2>
           </div>
           <img className='logo-detail' src={img_url} alt={name} />

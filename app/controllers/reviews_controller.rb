@@ -27,12 +27,20 @@ def create
   end
 end
 
+def update
+  if params['review']['review_image'] == "null"
+    params['review']['review_image'] = nil
+  end
 
-def update 
-    review = current_user.reviews.find(params[:id])
-    review.update!(review_params)
+  review = current_user.reviews.find(params[:id])
+
+  if review.update(review_params)
     render json: review, status: :accepted
-end 
+  else
+    render json: { errors: review.errors.full_messages }, status: :unprocessable_entity
+  end
+end
+
 
 def destroy
     review = current_user.reviews.find_by(id: params[:id])

@@ -1,10 +1,7 @@
-// UserProfile.js
 import React from 'react';
 
 const UserProfile = ({ user }) => {
   const { username, bio, email, profile_image_url } = user;
-
-  console.log(profile_image_url)
 
   return (
     <div className="user-profile-card">

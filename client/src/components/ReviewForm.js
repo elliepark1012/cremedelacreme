@@ -20,7 +20,7 @@ function ReviewForm({ addReview, menuitem }) {
 
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
-  
+
     if (name === 'ratings') {
       const sanitizedValue = parseInt(value, 10);
       if (!isNaN(sanitizedValue) && sanitizedValue >= 0 && sanitizedValue <= 5) {
@@ -45,16 +45,16 @@ function ReviewForm({ addReview, menuitem }) {
       setFormData({ ...formData, [name]: value });
     }
   };
-  
+
   const onSubmit = (e) => {
     e.preventDefault();
-  
+
     const formDataToSend = new FormData();
     formDataToSend.append('review[ratings]', formData.ratings);
     formDataToSend.append('review[comments]', formData.comments);
     formDataToSend.append('review[menuitem_id]', formData.menuitem_id);
     formDataToSend.append('review[review_image]', formData.review_image);
-  
+
     fetch('/reviews', {
       method: 'POST',
       body: formDataToSend,
@@ -74,10 +74,9 @@ function ReviewForm({ addReview, menuitem }) {
         }
       });
   };
-  
+
   return (
     <div className="formbox">
-
       <form onSubmit={onSubmit} encType="multipart/form-data">
         <label>Rate This Menu Item</label>
         <div className='errorbox'>{errors ? errors.map(e => <div className='error'>{e}</div>) : null}</div>
@@ -97,17 +96,18 @@ function ReviewForm({ addReview, menuitem }) {
           onChange={handleChange}
         />
 
-        <label>Photos</label>
+        <label htmlFor="review_image" className="file-label">Choose File</label>
         <input
           className="file-input"
           type="file"
+          id="review_image"
           name="review_image"
           onChange={handleChange}
           accept="image/*"
         />
         {imagePreview && (
-    <img src={imagePreview} alt="Preview" className="image-preview" /> )}
-    <label htmlFor="review_image" className="file-label">Choose File</label>
+          <img src={imagePreview} alt="Preview" className="image-preview" />
+        )}
         <button type="submit">Thank you for your honest review</button>
       </form>
     </div>

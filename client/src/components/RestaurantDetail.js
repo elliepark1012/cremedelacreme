@@ -11,7 +11,7 @@ const RestaurantDetail = () => {
     const restaurant = restaurants.find(res => res.id === parseInt(id));
 
     if (!restaurant) {
-        return <div>Loading...</div>; // or any other appropriate message
+        return <div>Loading...</div>; 
     }
 
     const { name, img_url, borough, location, about, hours, res_link} = restaurant;
