@@ -29,7 +29,7 @@ Restaurant.create({
 })
 
 Restaurant.create({
-    name:"Osteria Morini",
+    name:"Ooi Sushi",
     res_link:"https://www.ooisushi.com/",
     borough:"Queens",
     location:"4236 Crescent St",
@@ -81,7 +81,7 @@ Menuitem.create({
 Menuitem.create({
     restaurant_id:2,
     name:"BRAISED BEEF BANH MI",
-    img_url:"https://scontent-lga3-2.xx.fbcdn.net/v/t1.6435-9/52412093_1056099361257260_7470815755617959936_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=a26aad&_nc_ohc=7B6tB9N0kFEAX_7-yas&_nc_ht=scontent-lga3-2.xx&oh=00_AfClOi9BiNTYP3-QNpiz866s0MsV4ddRGz_jU4qxIlXCkQ&oe=6516EEF7",
+    img_url:"https://theoldwomanandthesea.com/wp-content/uploads/2020/12/2D8DDCD3-BA23-4932-9C3A-65BF09074C2C.jpeg",
     price:18,
     details:"Tender beef braised in pho broth, hoisin caramelized onions, charred chili sauce, cilantro & red onion on a toasted baguette with a side of pho broth for dipping.",
 })
@@ -97,7 +97,7 @@ Menuitem.create({
 Menuitem.create({
     restaurant_id:3,
     name:"ANATRA",
-    img_url:"https://scontent-lga3-2.xx.fbcdn.net/v/t1.6435-9/115578709_3046529695464643_4330344020803576117_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=9267fe&_nc_ohc=XX8DFlOIFMEAX_07RkK&_nc_ht=scontent-lga3-2.xx&oh=00_AfBlKCgzlmuAE-BNUrTfKt9WKywijSW6KUzbSNcEMoxisA&oe=651711EE",
+    img_url:"https://njmonthly.com/wp-content/uploads/cache/2014/06/Morini_in_Bernardsville/1028546969.jpg",
     price:35,
     details:"long island duck breast, peach mostarda, roasted baby carrots",
 })
@@ -198,31 +198,7 @@ han_menu_item_ids = (4..6).to_a
 ost_menu_item_ids = (7..9).to_a
 ooi_menu_item_ids = (10..12).to_a
 
-ratings = (3..5).to_a
-
-mar_url = [
- "https://www.abroadwithash.com/wp-content/uploads/2022/09/Laduree-Paris--scaled.jpg",
- "https://i0.wp.com/newyorksimply.com/wp-content/uploads/2021/11/SuperMoonBakeryNYC-02550.jpg?w=1800&ssl=1"
-]
-
-han_url = [
-    "https://media.timeout.com/images/103835896/1920/1080/image.jpg",
-    "https://cdn.vox-cdn.com/thumbor/vQJ44hOotDxbac-Q4dPcjLsYsrY=/0x0:2400x1600/1720x0/filters:focal(0x0:2400x1600):format(webp):no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/8239637/L1090956__1_.jpg",
-    "https://cdn.vox-cdn.com/thumbor/p8qfebDOwe7_LlOwbfVOAsLxZ9w=/1600x0/filters:no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/8239659/NS011564.jpg"
-]
-
-ost_url = [
-    "https://cdn.vox-cdn.com/uploads/chorus_asset/file/1296144/5037217255_8404b1702a_o.0.jpg",
-    "https://cdn.vox-cdn.com/thumbor/Y17U_T3yU3G7-kINYmn1hOmm2Sg=/1600x0/filters:no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/1296152/5037217365_0ee39ac1a8_o.0.jpg",
-    "https://altamareagroup.com/wp-content/uploads/2023/05/1z2a9433websize-1665680281382-scaled.jpg"
-]
-
-
-ooi_url = [
-  "https://lh3.googleusercontent.com/p/AF1QipN8JXxebXRoUX3tTwHLIRuKDO-px5qDMl3IGD_t=s1360-w1360-h1020",
-  "https://website-cdn.menusifu.com/wp-content/uploads/ooisushi.com/2023/08/0K9A9051-1.jpg",
-  "https://website-cdn.menusifu.com/wp-content/uploads/ooisushi.com/2023/08/0K9A9286-1.jpg"
-]
+ratings = (2..5).to_a
 
 comments = [
   "Delicious flavors! A must-try.",
@@ -252,78 +228,6 @@ comments = [
   "Innovative and thoroughly enjoyable."
 ]
 
-    # 5.times do
-    #     review = Review.create(
-    #       {
-    #         user_id: user_ids.sample,
-    #         menuitem_id: mar_menu_item_ids.sample,
-    #         review_image: mar_url.sample,  # Select a random URL from mar_url
-    #         ratings: ratings.sample,
-    #         comments: comments.sample
-    #       }
-    #     )
-    #   end
-      
-    #   5.times do
-    #     review = Review.create(
-    #       {
-    #         user_id: user_ids.sample,
-    #         menuitem_id: han_menu_item_ids.sample,
-    #         review_image: han_url.sample,  # Select a random URL from han_url
-    #         ratings: ratings.sample,
-    #         comments: comments.sample
-    #       }
-    #     )
-    #   end
-      
-    #   5.times do
-    #     review = Review.create(
-    #       {
-    #         user_id: user_ids.sample,
-    #         menuitem_id: ost_menu_item_ids.sample,
-    #         review_image: ost_url.sample,  # Select a random URL from ost_url
-    #         ratings: ratings.sample,
-    #         comments: comments.sample
-    #       }
-    #     )
-    #   end
-      
-    #   5.times do
-    #     review = Review.create(
-    #       {
-    #         user_id: user_ids.sample,
-    #         menuitem_id: ooi_menu_item_ids.sample,
-    #         review_image: ooi_url.sample,  # Select a random URL from ooi_url
-    #         ratings: ratings.sample,
-    #         comments: comments.sample
-    #       }
-    #     )
-    #   end
-
-    
-      # Assuming you have image files located in your Rails project's "app/assets/images" directory.
-# You can replace these paths with your actual image file paths.
-
-mar_images = [
-    Rails.root.join('app', 'assets', 'images', 'mar_image1.jpg'),
-    Rails.root.join('app', 'assets', 'images', 'mar_image2.jpg')
-  ]
-  
-  han_images = [
-    Rails.root.join('app', 'assets', 'images', 'han_image1.jpg'),
-    Rails.root.join('app', 'assets', 'images', 'han_image2.jpg')
-  ]
-  
-  ost_images = [
-    Rails.root.join('app', 'assets', 'images', 'ost_image1.jpg'),
-    Rails.root.join('app', 'assets', 'images', 'ost_image2.jpg')
-  ]
-  
-  ooi_images = [
-    Rails.root.join('app', 'assets', 'images', 'ooi_image1.jpg'),
-    Rails.root.join('app', 'assets', 'images', 'ooi_image2.jpg')
-  ]
-  
   5.times do
     review = Review.create(
       {
@@ -333,7 +237,6 @@ mar_images = [
         comments: comments.sample
       }
     )
-    review.review_image.attach(io: File.open(mar_images.sample), filename: 'mar_image.jpg')
   end
   
   5.times do
@@ -345,7 +248,6 @@ mar_images = [
         comments: comments.sample
       }
     )
-    review.review_image.attach(io: File.open(han_images.sample), filename: 'han_image.jpg')
   end
 
   5.times do
@@ -357,7 +259,6 @@ mar_images = [
         comments: comments.sample
       }
     )
-    review.review_image.attach(io: File.open(ost_images.sample), filename: 'ost_image.jpg')
   end
 
   5.times do
@@ -369,5 +270,4 @@ mar_images = [
         comments: comments.sample
       }
     )
-    review.review_image.attach(io: File.open(ooi_images.sample), filename: 'ooi_image.jpg')
   end

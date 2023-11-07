@@ -24,7 +24,7 @@ const RestaurantDetail = () => {
         <div className='card' key={menu.id}>
             <Link to={`/menus/${menu.id}`} style={{ textDecoration: 'none', color: 'black' }}>
                 <img className='logo' src={menu.img_url} alt={menu.name} />
-                <p className='res-name'> {menu.name} <br></br>{menu.ave_ratings}</p> 
+                <p className='res-name'> {menu.name} </p> 
             </Link> 
         </div>
         )     

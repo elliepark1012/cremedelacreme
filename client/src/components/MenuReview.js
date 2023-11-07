@@ -1,16 +1,11 @@
 import React from 'react';
 
 const MenuReview = ({ review }) => {
-
-  
   return (
-    
     <div className='card' id="review-card" key={review.id}>
-      <img className='logo' id="review_img" src={review.review_image_url} alt={review.id} />
       <p className='res-name'>Rating: {review.ratings}</p> 
-      <p className='res-name'> {review.comments}</p> 
-      <p className='res-name'> by {review.user_name}</p>
-      <p className='res-name'> ({review.user_bio})</p>  
+      <p className='res-name'>{review.comments}</p> 
+      <p className='res-name'>by {review.user_name} <br></br><br></br>({review.user_bio})</p>
     </div>
   );
 };
