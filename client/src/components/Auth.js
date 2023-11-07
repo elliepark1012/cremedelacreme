@@ -42,14 +42,13 @@ function Auth() {
     function onSubmit(e) {
         e.preventDefault();
         const formDataWithImage = new FormData();
-formDataWithImage.append('user[username]', formData.username);
-formDataWithImage.append('user[email]', formData.email);
-formDataWithImage.append('user[password]', formData.password);
-formDataWithImage.append('user[password_confirmation]', formData.password_confirmation);
-formDataWithImage.append('user[bio]', formData.bio); 
-formDataWithImage.append('user[profile_image]', formData.profile_image); 
-
-
+        formDataWithImage.append('user[username]', formData.username);
+        formDataWithImage.append('user[email]', formData.email);
+        formDataWithImage.append('user[password]', formData.password);
+        formDataWithImage.append('user[password_confirmation]', formData.password_confirmation);
+        formDataWithImage.append('user[bio]', formData.bio);
+        formDataWithImage.append('user[profile_image]', formData.profile_image);
+    
         fetch('/users', {
             method: 'POST',
             body: formDataWithImage,
@@ -61,21 +60,23 @@ formDataWithImage.append('user[profile_image]', formData.profile_image);
                         email: '',
                         password: '',
                         password_confirmation: '',
-                        bio: '', 
-                        profile_image: null, 
+                        bio: '',
+                        profile_image: null,
                     });
-                    res.json().then(setCurrentUser);
-                    navigate('/mypage');
+                    res.json().then((user) => {
+                        setCurrentUser(user);
+                        navigate('/mypage');
+                    });
                 } else {
-                    res.json().then((errorData) =>
-                        setErrors(Object.entries(errorData.errors).map((e) => `${e[0]} ${e[1]}`))
-                    );
+                    res.json().then((errorData) => {
+                        const errors = Object.values(errorData.errors).flat();
+                        setErrors(errors);
+                    });
                 }
             });
     }
-
     
-
+    
     return (
         <div className='formbox'>
             <video className='backVideo' src={mainVideo} autoPlay loop muted />
